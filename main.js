@@ -1,3 +1,10 @@
+/*
+  Javascript for CustomScrollBar.
+
+  @author Swaroop Kumar Badam (created on 26-12-2011)
+
+  */
+
 var $ = function(id) {
   return document.getElementById(id);
 }
