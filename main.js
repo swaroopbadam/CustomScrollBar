@@ -13,6 +13,7 @@ window.onload = function() {
   var scrollBar = $('scrollBar');
   var stopScroll = false;
   var fixedContainer = $('fixedContainer');
+  fixedContainer = fixedContainer.children[0];
   var mouseY = 0;
   scrollBar.onmousedown = function(evt) {
     mouseY = evt.clientY;
@@ -33,7 +34,7 @@ window.onload = function() {
     }
   }
   fixedContainer.onscroll = function(evt) {
-    console.log(evt.clientY);
+    scrollBar.style.top = (scrollBar.offsetTop + 10) + 'px';
   }
   document.onmouseup = function(evt) {
     document.onmousemove = null;
