@@ -5,41 +5,42 @@
 
   */
 
-var $ = function(id) {
-  return document.getElementById(id);
-}
+$(document).ready(function() {
 
-window.onload = function() {
-  var scrollBar = $('scrollBar');
+  var scrollBarMouseDown = function(evt) {
+    $(document).on('mousemove', {mouseY: evt.pageY}, docMouseMove);
+  };
+  
+  var docMouseMove = function(evt) {
+      //if (fixedContainer.scrollTop < (getContentHeight(fixedContainer) - fixedContainer.offsetHeight)) {
+        //var unit = scrollUnit(fixedContainer.offsetHeight, getContentHeight(fixedContainer));
+        var unit = 2;
+        var mouseY = evt.data.mouseY;
+        var scrollAmount = evt.pageY - mouseY;
+        var scrollBarOffset = scrollBar.offset();
+        var fixedContainerOffset = fixedContainer.offset();
+        if (scrollAmount > 0 && ((scrollBarOffset.top + scrollBar.height()) > fixedContainer.height())) {
+          return;
+        }
+        if (scrollAmount < 0 && scrollBarOffset.top <= 0) {
+          return;
+        }
+        fixedContainer[0].scrollTop += scrollAmount * unit;
+        scrollBar.css('top', (scrollBarOffset.top + scrollAmount) + 'px');
+      //}
+  };
+
+  var docMouseUp = function(evt) {
+    $(document).off('mousemove',docMouseMove)
+  };
+
+  var scrollBar = $('#scrollBar');
   var stopScroll = false;
-  var fixedContainer = $('fixedContainer');
-  fixedContainer = fixedContainer.children[0];
-  var mouseY = 0;
-  scrollBar.onmousedown = function(evt) {
-    mouseY = evt.clientY;
-    document.onmousemove = function(evt) {
-      if (fixedContainer.scrollTop < (getContentHeight(fixedContainer) - fixedContainer.offsetHeight)) {
-        var unit = scrollUnit(fixedContainer.offsetHeight, getContentHeight(fixedContainer));
-        var scrollAmount = evt.clientY - mouseY;
-        mouseY = evt.clientY;
-        if (scrollAmount > 0 && (scrollBar.offsetTop + scrollBar.offsetHeight) > (fixedContainer.offsetHeight)) {
-          return;
-        }
-        if (scrollAmount < 0 && scrollBar.offsetTop <= 0) {
-          return;
-        }
-        fixedContainer.scrollTop += scrollAmount * unit;
-        scrollBar.style.top = (scrollBar.offsetTop + scrollAmount) + 'px';
-      }
-    }
-  }
-  fixedContainer.onscroll = function(evt) {
-    scrollBar.style.top = (scrollBar.offsetTop + 10) + 'px';
-  }
-  document.onmouseup = function(evt) {
-    document.onmousemove = null;
-  }
-}
+  var fixedContainer = $('#fixedContainer');
+  scrollBar.on('mousedown', scrollBarMouseDown);
+  $(document).on('mouseup', docMouseUp);
+
+});
 
 var scrollUnit = function(containerHeight, contentHeight) {
   return contentHeight / containerHeight;
