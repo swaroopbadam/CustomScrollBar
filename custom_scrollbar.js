@@ -1,48 +1,8 @@
-/*
+/*!
  * Javascript for CustomScrollBar.
- *
+ * https://github.com/swaroopkumar/CustomScrollBar
  * @author Swaroop Kumar Badam (created on 26-12-2011)
- *
  */
-
-$(document).ready(function() {
-
-	var scrollBarMouseDown = function(evt) {
-		$(document).on('mousemove', {mouseY: evt.pageY}, docMouseMove);
-		$(document).one('mouseup', docMouseUp);
-	};
-  
-	var docMouseMove = function(evt) {
-      //if (fixedContainer.scrollTop < (getContentHeight(fixedContainer) - fixedContainer.offsetHeight)) {
-        //var unit = scrollUnit(fixedContainer.offsetHeight, getContentHeight(fixedContainer));
-        var unit = 2;
-        var mouseY = evt.data.mouseY;
-        var scrollAmount = evt.pageY - mouseY;
-        var scrollBarOffset = scrollBar.offset();
-        var fixedContainerOffset = fixedContainer.offset();
-        if (scrollAmount > 0 && ((scrollBarOffset.top + scrollBar.height()) > fixedContainer.height())) {
-          return;
-        }
-        if (scrollAmount < 0 && scrollBarOffset.top <= 0) {
-          return;
-        }
-        fixedContainer[0].scrollTop += scrollAmount * unit;
-        scrollBar.css('top', (scrollBarOffset.top + scrollAmount) + 'px');
-      //}
-	};
-
-	var docMouseUp = function(evt) {
-		$(document).off('mousemove',docMouseMove)
-		//$(document).off('mouseup', docMouseUp);
-	};
-
-	var scrollBar = $('#scrollBar');
-	var stopScroll = false;
-	var fixedContainer = $('#fixedContainer');
-	//scrollBar.on('mousedown', scrollBarMouseDown);
-	window.scrollBarObj = new CustomScroll('fixedContainer');
-
-});
 
 function CustomScroll(id, config) {
 	if (!id || !$('#' + id)) {
@@ -57,7 +17,6 @@ function CustomScroll(id, config) {
 
 CustomScroll.prototype.init = function() {
 	this.container.css('overflow', 'hidden');
-//	this.scrollBarEl = $('#scrollBar');
 	this.scrollBarEl = this.createScrollBarElement();
 //	this.attachMouseOverHandlers();
 	var obj = this;
@@ -91,19 +50,31 @@ CustomScroll.prototype.onDocumentMouseMove = function(evt) {
 	this.mouseY = evt.pageY;
 	if (mouseMoveY > 0) {
 		unit = this.getDownScrollUnit();
-	} else {
+	} else if (mouseMoveY < 0) {
 		unit = this.getUpScrollUnit();
+	} else {
+		return;
 	}
-	var scrollBarOffset = this.scrollBarEl.offset();
-	var containerOffset = this.container.offset();
-	if (mouseMoveY > 0 && ((scrollBarOffset.top + this.scrollBarEl.height()) > this.container.height())) {
+//	var scrollBarOffset = this.scrollBarEl.offset();
+//	var containerOffset = this.container.offset();
+	if (mouseMoveY > 0 && ((this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight - this.container[0].offsetTop) > this.container[0].offsetHeight)) {
 	  return;
 	}
-	if (mouseMoveY < 0 && scrollBarOffset.top <= 0) {
+	if (mouseMoveY < 0 && this.scrollBarEl[0].offsetTop <= this.container[0].offsetTop) {
 	  return;
 	}
 	this.container[0].scrollTop += mouseMoveY * unit;
-	this.scrollBarEl.css('top', (scrollBarOffset.top + mouseMoveY) + 'px');
+//	console.log('mouseMoveY: ' + mouseMoveY);
+//	console.log('before scrollBarOffset: ' + this.scrollBarEl[0].offsetTop);
+	if (mouseMoveY > 0 && mouseMoveY > (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop))) {
+		this.scrollBarEl.css('top', (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight + this.container[0].offsetTop) + 'px');
+		return;
+	} else if (mouseMoveY < 0 && Math.abs(mouseMoveY) > (this.scrollBarEl[0].offsetTop - this.container[0].offsetTop)) {
+		this.scrollBarEl.css('top', this.container[0].offsetTop + 'px');
+		return;
+	}
+	this.scrollBarEl.css('top', (this.scrollBarEl[0].offsetTop + mouseMoveY) + 'px');
+//	console.log('after scrollBarOffset: ' + this.scrollBarEl[0].offsetTop);
 };
 
 CustomScroll.prototype.onDocumentMouseUp = function(evt) {
@@ -118,22 +89,23 @@ CustomScroll.prototype.createScrollBarElement = function() {
 	div.css('background-color', 'black');
 	div.css('border-radius', '8px');
 	div.css('opacity', '0.5');
-	div.css('top', '0');
-	div.css('left', (this.container.width() - 15) + 'px');
-	return div.appendTo(this.container);
+	div.css('top', this.container[0].offsetTop + 'px');
+	div.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
+	return div.appendTo(this.container[0].offsetParent);
 }
 
 CustomScroll.prototype.getDownScrollUnit = function() {
 	var scrollBarHeight = this.scrollBarEl[0].offsetHeight;
 	var containerHeight = this.container[0].offsetHeight;
-/*	console.log('scrollBarHeight: ' + scrollBarHeight);
+	console.log('scrollBarHeight: ' + scrollBarHeight);
 	console.log('containerHeight: ' + containerHeight);
 	console.log('this.maxScrollTop: ' + this.maxScrollTop);
 	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
-	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop); */
+	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
+	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop);
 	var numerator = this.maxScrollTop - this.container[0].scrollTop;
-	var denominator = containerHeight - scrollBarHeight - this.scrollBarEl[0].offsetTop;
-//	console.log('unit:' + numerator/denominator);
+	var denominator = containerHeight - (scrollBarHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop);
+	console.log('unit:' + numerator/denominator);
 	if (!denominator || denominator < 0 || numerator < 0) {
 		return 0;
 	}
@@ -141,16 +113,12 @@ CustomScroll.prototype.getDownScrollUnit = function() {
 }
 
 CustomScroll.prototype.getUpScrollUnit = function() {
-	var scrollBarHeight = this.scrollBarEl[0].offsetHeight;
-	var containerHeight = this.container[0].offsetHeight;
-/*	console.log('scrollBarHeight: ' + scrollBarHeight);
-	console.log('containerHeight: ' + containerHeight);
-	console.log('this.maxScrollTop: ' + this.maxScrollTop);
 	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
-	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop); */
+	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
+	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop); 
 	var numerator = this.container[0].scrollTop;
-	var denominator = this.scrollBarEl[0].offsetTop;
-//	console.log('unit:' + denominator);
+	var denominator = this.scrollBarEl[0].offsetTop - this.container[0].offsetTop;
+	console.log('unit:' + denominator);
 	if (!denominator || denominator < 0 || numerator < 0) {
 		return 0;
 	}
