@@ -31,6 +31,20 @@ CustomScroll.prototype.init = function() {
 	this.mouseY = 0;
 }
 
+CustomScroll.prototype.createScrollBarElement = function() {
+	var div = $('<div></div>');
+	div.width('15px');
+	div.height('100px');
+	div.css('position', 'absolute');
+	div.css('background-color', 'black');
+	div.css('border-radius', '8px');
+	div.css('cursor', 'pointer');
+	div.css('opacity', '0.5');
+	div.css('top', this.container[0].offsetTop + 'px');
+	div.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
+	return div.appendTo(this.container[0].offsetParent);
+}
+
 CustomScroll.prototype.attachMouseOverHandlers = function() {
 	var obj = this;
 	this.container.on('mouseover', function(){obj.scrollBarEl.css('display', 'block');});
@@ -48,15 +62,22 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 	evt = evt.originalEvent;
 	var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta;
 	delta = -(delta);
-	if (delta > 0 && this.container[0].scrollTop + delta > this.maxScrollTop) {
+	if (delta > 0 && this.container[0].scrollTop >= this.maxScrollTop) {
 		return;
 	}
-	if (delta < 0 && this.container[0].scrollTop + delta < 0) {
+	if (delta < 0 && this.container[0].scrollTop == 0) {
 		return;
 	}
 	this.container[0].scrollTop += delta;
-	var unit = this.getScrollUnit(delta);
-	this.setScrollBarPosition(Math.round(delta/unit));
+	var unit = 0;
+	if (delta > 0) {
+		unit = this.getScrollBarDownLimit()/((this.maxScrollTop - this.container[0].scrollTop)/120);
+	} else {
+		unit = -(this.scrollBarEl[0].offsetTop - this.container[0].offsetTop)/(this.container[0].scrollTop/120);
+	}
+//	console.log('this.container[0].scrollTop:' + this.container[0].scrollTop);
+//	console.log('unit:' + unit);
+	this.setScrollBarPosition(Math.round(unit));
 };
 
 CustomScroll.prototype.getScrollUnit = function(mouseMoveY) {
@@ -103,20 +124,6 @@ CustomScroll.prototype.onDocumentMouseUp = function(evt) {
 	$(document).off('mousemove');
 };
 
-CustomScroll.prototype.createScrollBarElement = function() {
-	var div = $('<div></div>');
-	div.width('15px');
-	div.height('100px');
-	div.css('position', 'absolute');
-	div.css('background-color', 'black');
-	div.css('border-radius', '8px');
-	div.css('cursor', 'pointer');
-	div.css('opacity', '0.5');
-	div.css('top', this.container[0].offsetTop + 'px');
-	div.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
-	return div.appendTo(this.container[0].offsetParent);
-}
-
 CustomScroll.prototype.getDownScrollUnit = function() {
 	var scrollBarHeight = this.scrollBarEl[0].offsetHeight;
 	var containerHeight = this.container[0].offsetHeight;
@@ -127,12 +134,16 @@ CustomScroll.prototype.getDownScrollUnit = function() {
 //	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
 //	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop);
 	var numerator = this.maxScrollTop - this.container[0].scrollTop;
-	var denominator = containerHeight - (scrollBarHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop);
+	var denominator = this.getScrollBarDownLimit();
 //	console.log('unit:' + numerator/denominator);
 	if (!denominator || denominator < 0 || numerator < 0) {
 		return 0;
 	}
 	return numerator/denominator;
+}
+
+CustomScroll.prototype.getScrollBarDownLimit = function() {
+	return (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop));
 }
 
 CustomScroll.prototype.getUpScrollUnit = function() {
