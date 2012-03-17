@@ -1,3 +1,12 @@
-mouse wheel, scroll bar drag, up/down arrow keys, customize looks, ver and hor, various inbuilt stylish bars, html5, jquery
-
-- 
+- scroll bar drag
+- mouse wheel
+- up/down arrow keys
+- vertical column space for scroll bar
+- click anywhere on the vertical column scrolls content
+- text selection while dragging shud scroll content
+- holding mouse centre button down shud show up the scrolling arrows cursor
+- top and down arrow buttons in vertical column
+- customize looks
+- horizontal scroll bar wid all features of vertical scroll bar
+- various inbuilt stylish bars
+- html5, jquery

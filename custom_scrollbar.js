@@ -19,10 +19,7 @@ CustomScroll.prototype.init = function() {
 	this.container.css('overflow', 'hidden');
 	this.scrollBarEl = this.createScrollBarElement();
 //	this.attachMouseOverHandlers();
-	var obj = this;
-	this.scrollBarEl.on('mousedown', function(evt){obj.onScrollBarMouseDown(evt);});
-	var mousewheelevt = (/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
-	this.container.on(mousewheelevt, function(evt){obj.onMouseScroll(evt);});
+	this.initEventHandlers();
 	var contentHeight = this.getContentHeight(this.container[0]);
 	this.container[0].scrollTop = contentHeight;
 	this.maxScrollTop = this.container[0].scrollTop;
@@ -43,6 +40,30 @@ CustomScroll.prototype.createScrollBarElement = function() {
 	div.css('top', this.container[0].offsetTop + 'px');
 	div.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
 	return div.appendTo(this.container[0].offsetParent);
+}
+
+CustomScroll.prototype.initEventHandlers = function() {
+	var obj = this;
+	this.scrollBarEl.on('mousedown', function(evt){obj.onScrollBarMouseDown(evt);});
+	var mousewheelevt = (/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+	this.container.on(mousewheelevt, function(evt){obj.onMouseScroll(evt);});
+	this.container.on('keydown', function(evt){obj.onKeyDown(evt);});
+}
+
+CustomScroll.prototype.onKeyDown = function(evt) {
+	if (evt.keyCode == '38') {
+		this.moveContentUp(evt);
+	} else if (evt.keyCode == '40') {
+		this.moveContentDown(evt);	
+	}
+}
+
+CustomScroll.prototype.moveContentUp = function(evt) {
+	console.log(evt);
+}
+
+CustomScroll.prototype.moveContentDown = function(evt) {
+	console.log(evt);
 }
 
 CustomScroll.prototype.attachMouseOverHandlers = function() {
@@ -68,7 +89,6 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 	if (delta < 0 && this.container[0].scrollTop == 0) {
 		return;
 	}
-	this.container[0].scrollTop += delta;
 	var unit = 0;
 	if (delta > 0) {
 		unit = this.getScrollBarDownLimit()/((this.maxScrollTop - this.container[0].scrollTop)/120);
@@ -77,6 +97,7 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 	}
 //	console.log('this.container[0].scrollTop:' + this.container[0].scrollTop);
 //	console.log('unit:' + unit);
+	this.container[0].scrollTop += delta;
 	this.setScrollBarPosition(Math.round(unit));
 };
 
