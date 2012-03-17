@@ -17,6 +17,7 @@ function CustomScroll(id, config) {
 
 CustomScroll.prototype.init = function() {
 	this.container.css('overflow', 'hidden');
+	this.container.attr('tabindex', '0');
 	this.scrollBarEl = this.createScrollBarElement();
 //	this.attachMouseOverHandlers();
 	this.initEventHandlers();
@@ -51,19 +52,31 @@ CustomScroll.prototype.initEventHandlers = function() {
 }
 
 CustomScroll.prototype.onKeyDown = function(evt) {
-	if (evt.keyCode == '38') {
-		this.moveContentUp(evt);
-	} else if (evt.keyCode == '40') {
-		this.moveContentDown(evt);	
+	if (evt.keyCode == '38') {	// Up Arrow
+		this.scrollBy(-40);
+	} else if (evt.keyCode == '40') {	// Down Arrow
+		this.scrollBy(40);
+	} else if (evt.keyCode == '33') {	// Page Up
+		this.scrollBy(-400);
+	} else if (evt.keyCode == '34') {	// Page Down
+		this.scrollBy(400);
+	} else if (evt.keyCode == '36') {	// Home
+		this.scrollToHome();
+	} else if (evt.keyCode == '35') {	// End
+		this.scrollToEnd();
+	} else if (evt.keyCode == '32') {	// Space Bar
+		this.scrollBy(400);
 	}
 }
 
-CustomScroll.prototype.moveContentUp = function(evt) {
-	console.log(evt);
+CustomScroll.prototype.scrollToHome = function() {
+	this.container[0].scrollTop = 0;
+	this.scrollBarEl.css('top', this.container[0].offsetTop + 'px');
 }
 
-CustomScroll.prototype.moveContentDown = function(evt) {
-	console.log(evt);
+CustomScroll.prototype.scrollToEnd = function() {
+	this.container[0].scrollTop = this.maxScrollTop;
+	this.scrollBarEl.css('top', (this.container[0].offsetTop + this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight)+ 'px');
 }
 
 CustomScroll.prototype.attachMouseOverHandlers = function() {
@@ -83,23 +96,27 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 	evt = evt.originalEvent;
 	var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta;
 	delta = -(delta);
-	if (delta > 0 && this.container[0].scrollTop >= this.maxScrollTop) {
+	this.scrollBy(delta);
+};
+
+CustomScroll.prototype.scrollBy = function(amount) {
+	if (amount > 0 && this.container[0].scrollTop >= this.maxScrollTop) {
 		return;
 	}
-	if (delta < 0 && this.container[0].scrollTop == 0) {
+	if (amount < 0 && this.container[0].scrollTop == 0) {
 		return;
 	}
 	var unit = 0;
-	if (delta > 0) {
-		unit = this.getScrollBarDownLimit()/((this.maxScrollTop - this.container[0].scrollTop)/120);
+	if (amount > 0) {
+		unit = this.getScrollBarDownLimit()/((this.maxScrollTop - this.container[0].scrollTop)/amount);
 	} else {
-		unit = -(this.scrollBarEl[0].offsetTop - this.container[0].offsetTop)/(this.container[0].scrollTop/120);
+		unit = (this.scrollBarEl[0].offsetTop - this.container[0].offsetTop)/(this.container[0].scrollTop/amount);
 	}
 //	console.log('this.container[0].scrollTop:' + this.container[0].scrollTop);
 //	console.log('unit:' + unit);
-	this.container[0].scrollTop += delta;
+	this.container[0].scrollTop += amount;
 	this.setScrollBarPosition(Math.round(unit));
-};
+}
 
 CustomScroll.prototype.getScrollUnit = function(mouseMoveY) {
 	if (mouseMoveY > 0) {
