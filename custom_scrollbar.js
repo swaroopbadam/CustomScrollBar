@@ -18,29 +18,56 @@ function CustomScroll(id, config) {
 CustomScroll.prototype.init = function() {
 	this.container.css('overflow', 'hidden');
 	this.container.attr('tabindex', '0');
-	this.scrollBarEl = this.createScrollBarElement();
+	this.createScrollBar();
 //	this.attachMouseOverHandlers();
 	this.initEventHandlers();
-	var contentHeight = this.getContentHeight(this.container[0]);
-	this.container[0].scrollTop = contentHeight;
-	this.maxScrollTop = this.container[0].scrollTop;
-	this.container[0].scrollTop = 0;
+	this.updateMaxScrollTop();
 	this.mouseX = 0;
 	this.mouseY = 0;
 }
 
-CustomScroll.prototype.createScrollBarElement = function() {
-	var div = $('<div></div>');
-	div.width('15px');
-	div.height('100px');
-	div.css('position', 'absolute');
-	div.css('background-color', 'black');
-	div.css('border-radius', '8px');
-	div.css('cursor', 'pointer');
-	div.css('opacity', '0.5');
-	div.css('top', this.container[0].offsetTop + 'px');
-	div.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
-	return div.appendTo(this.container[0].offsetParent);
+CustomScroll.prototype.updateMaxScrollTop = function() {
+	var scrollTop = this.container[0].scrollTop;
+	var contentHeight = this.getContentHeight(this.container[0]);
+	this.container[0].scrollTop = contentHeight;
+	this.maxScrollTop = this.container[0].scrollTop;
+	this.container[0].scrollTop = scrollTop;
+}
+
+CustomScroll.prototype.createScrollBar = function() {
+	this.scrollBarWrap = $('<div></div>').appendTo(this.container[0].offsetParent);
+	var columnDiv = $('<div></div>');
+	columnDiv.width('15px');
+	columnDiv.height(this.container[0].offsetHeight);
+	columnDiv.css('position', 'absolute');
+	columnDiv.css('background-color', 'black');
+	columnDiv.css('border-radius', '8px');
+	columnDiv.css('opacity', '0.2');
+	columnDiv.css('top', this.container[0].offsetTop + 'px');
+	columnDiv.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
+	this.scrollBarColumn = columnDiv.appendTo(this.scrollBarWrap);
+	var scrollBarDiv = $('<div></div>');
+	scrollBarDiv.width('15px');
+	scrollBarDiv.height('100px');
+	scrollBarDiv.css('position', 'absolute');
+	scrollBarDiv.css('background-color', 'black');
+	scrollBarDiv.css('border-radius', '8px');
+	scrollBarDiv.css('cursor', 'pointer');
+	scrollBarDiv.css('opacity', '0.5');
+	scrollBarDiv.css('top', this.container[0].offsetTop + 'px');
+	scrollBarDiv.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
+	this.scrollBarEl = scrollBarDiv.appendTo(this.scrollBarWrap);
+/*	var scrollUpButton = $('<div></div>');
+	scrollUpButton.width('15px');
+	scrollUpButton.height('20px');
+	scrollUpButton.css('position', 'absolute');
+	scrollUpButton.css('background-color', 'black');
+	scrollUpButton.css('border-radius', '8px');
+	scrollUpButton.css('opacity', '0.5');
+	scrollUpButton.css('top', this.container[0].offsetTop + 'px');
+	scrollUpButton.css('left', (this.container.width() + this.container[0].offsetLeft - 15) + 'px');
+	this.scrollUpButton = scrollUpButton.appendTo(this.scrollBarWrap);
+*/
 }
 
 CustomScroll.prototype.initEventHandlers = function() {
@@ -49,6 +76,45 @@ CustomScroll.prototype.initEventHandlers = function() {
 	var mousewheelevt = (/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
 	this.container.on(mousewheelevt, function(evt){obj.onMouseScroll(evt);});
 	this.container.on('keydown', function(evt){obj.onKeyDown(evt);});
+	if (this.scrollBarColumn) {
+		this.scrollBarColumn.on('mousedown', function(evt){obj.onColumnMouseDown(evt);});
+		this.scrollBarColumn.on('mouseup', function(evt){obj.onColumnMouseUp(evt);});
+	}
+}
+
+CustomScroll.prototype.onColumnMouseDown = function(evt) {
+	if (evt.target == this.scrollBarEl[0]) {
+		return;
+	}
+	var obj = this;
+	this.columnMouseDown = true;
+	this.columnMouseDownPageY = evt.pageY;
+	setTimeout(function(){obj.columnMouseDownScroll();}, 0);
+}
+
+CustomScroll.prototype.columnMouseDownScroll = function() {
+	var obj = this;
+	if (!this.columnMouseDown) {
+		return;
+	}
+	if (this.columnMouseDownPageY < (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop)) {
+		this.scrollBy(-400);
+		if (this.columnMouseDownPageY > (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
+			this.columnMouseDown = false;
+		}
+	} else if (this.columnMouseDownPageY > (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
+		this.scrollBy(400);
+		if (this.columnMouseDownPageY < (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop)) {
+			this.columnMouseDown = false;
+		}
+	} else {
+		this.columnMouseDown = false;
+	}
+	setTimeout(function(){obj.columnMouseDownScroll();}, 10);
+}
+
+CustomScroll.prototype.onColumnMouseUp = function(evt) {
+	this.columnMouseDown = false;
 }
 
 CustomScroll.prototype.onKeyDown = function(evt) {
@@ -57,15 +123,15 @@ CustomScroll.prototype.onKeyDown = function(evt) {
 	} else if (evt.keyCode == '40') {	// Down Arrow
 		this.scrollBy(40);
 	} else if (evt.keyCode == '33') {	// Page Up
-		this.scrollBy(-400);
+		this.scrollBy(-430);
 	} else if (evt.keyCode == '34') {	// Page Down
-		this.scrollBy(400);
+		this.scrollBy(430);
 	} else if (evt.keyCode == '36') {	// Home
 		this.scrollToHome();
 	} else if (evt.keyCode == '35') {	// End
 		this.scrollToEnd();
 	} else if (evt.keyCode == '32') {	// Space Bar
-		this.scrollBy(400);
+		this.scrollBy(430);
 	}
 }
 
@@ -75,6 +141,7 @@ CustomScroll.prototype.scrollToHome = function() {
 }
 
 CustomScroll.prototype.scrollToEnd = function() {
+//	this.updateMaxScrollTop();
 	this.container[0].scrollTop = this.maxScrollTop;
 	this.scrollBarEl.css('top', (this.container[0].offsetTop + this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight)+ 'px');
 }
@@ -100,6 +167,7 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 };
 
 CustomScroll.prototype.scrollBy = function(amount) {
+//	this.updateMaxScrollTop();
 	if (amount > 0 && this.container[0].scrollTop >= this.maxScrollTop) {
 		return;
 	}
@@ -128,6 +196,7 @@ CustomScroll.prototype.getScrollUnit = function(mouseMoveY) {
 }
 
 CustomScroll.prototype.onDocumentMouseMove = function(evt) {
+//	this.updateMaxScrollTop();
 	window.getSelection().removeAllRanges();
 	var mouseY = this.mouseY;
 	var mouseMoveY = evt.pageY - mouseY;
