@@ -1,10 +1,10 @@
 //- scroll bar drag
 //- mouse wheel
 //- scroll on up/down arrow keys  -- using tabindex to get the focus on container when clicked on it.
-- prevent browser's default behaviour for up/down arrow keys and mouse wheel scroll.
+//- prevent browser's default behaviour for up/down arrow keys and mouse wheel scroll.
 - top and down arrow buttons in vertical column
-- vertical column space for scroll bar
-- click anywhere on the vertical column scrolls content
+//- vertical column space for scroll bar
+//- click anywhere on the vertical column scrolls content
 - text selection while dragging shud scroll content
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks

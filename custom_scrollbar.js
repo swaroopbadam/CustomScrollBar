@@ -133,6 +133,18 @@ CustomScroll.prototype.onKeyDown = function(evt) {
 	} else if (evt.keyCode == '32') {	// Space Bar
 		this.scrollBy(430);
 	}
+	if (!this.hasScrolledToTopOrBottom()) {
+		evt.preventDefault();
+	}
+}
+
+CustomScroll.prototype.hasScrolledToTopOrBottom = function() {
+	if (this.container[0].scrollTop == 0) {
+		return true;
+	}
+	if (this.container[0].scrollTop == this.maxScrollTop) {
+		return true;
+	}
 }
 
 CustomScroll.prototype.scrollToHome = function() {
@@ -164,6 +176,9 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 	var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta;
 	delta = -(delta);
 	this.scrollBy(delta);
+	if (!this.hasScrolledToTopOrBottom()) {
+		evt.preventDefault();
+	}
 };
 
 CustomScroll.prototype.scrollBy = function(amount) {
