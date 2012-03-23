@@ -7,7 +7,8 @@
 //- click anywhere on the vertical column scrolls content
 - text selection while dragging shud scroll content
 - holding mouse centre button down shud show up the scrolling arrows cursor
-- customize looks
+- customize looks (scroll bar with gradient, 3d look)
+- various demo samples (use cases like online frnds/contacts box, long product description, comments box, guest users chat box, display of thumbnails)
 - horizontal scroll bar wid all features of vertical scroll bar
 - various inbuilt stylish bars
 - html5, jquery

@@ -16,10 +16,9 @@ function CustomScroll(id, config) {
 }
 
 CustomScroll.prototype.init = function() {
-	this.container.css('overflow', 'hidden');
+	this.container.css('overflow-y', 'hidden');
 	this.container.attr('tabindex', '0');
 	this.createScrollBar();
-//	this.attachMouseOverHandlers();
 	this.initEventHandlers();
 	this.updateMaxScrollTop();
 	this.mouseX = 0;
@@ -80,6 +79,7 @@ CustomScroll.prototype.initEventHandlers = function() {
 		this.scrollBarColumn.on('mousedown', function(evt){obj.onColumnMouseDown(evt);});
 		this.scrollBarColumn.on('mouseup', function(evt){obj.onColumnMouseUp(evt);});
 	}
+//	this.attachMouseOverHandlers();
 }
 
 CustomScroll.prototype.onColumnMouseDown = function(evt) {
@@ -97,15 +97,19 @@ CustomScroll.prototype.columnMouseDownScroll = function() {
 	if (!this.columnMouseDown) {
 		return;
 	}
-	if (this.columnMouseDownPageY < (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop)) {
+//	console.log("columnMouseDownPageY:" + this.columnMouseDownPageY);
+//	console.log("total height:" + (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight));
+	if (this.columnMouseDownPageY < this.scrollBarEl[0].offsetTop) {
 		this.scrollBy(-400);
-		if (this.columnMouseDownPageY > (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
+		if (this.columnMouseDownPageY > this.scrollBarEl[0].offsetTop) {
 			this.columnMouseDown = false;
+			return;
 		}
-	} else if (this.columnMouseDownPageY > (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
+	} else if (this.columnMouseDownPageY > (this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
 		this.scrollBy(400);
-		if (this.columnMouseDownPageY < (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop)) {
+		if (this.columnMouseDownPageY < (this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
 			this.columnMouseDown = false;
+			return;
 		}
 	} else {
 		this.columnMouseDown = false;
@@ -153,15 +157,15 @@ CustomScroll.prototype.scrollToHome = function() {
 }
 
 CustomScroll.prototype.scrollToEnd = function() {
-//	this.updateMaxScrollTop();
+	this.updateMaxScrollTop();
 	this.container[0].scrollTop = this.maxScrollTop;
 	this.scrollBarEl.css('top', (this.container[0].offsetTop + this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight)+ 'px');
 }
 
 CustomScroll.prototype.attachMouseOverHandlers = function() {
 	var obj = this;
-	this.container.on('mouseover', function(){obj.scrollBarEl.css('display', 'block');});
-	this.container.on('mouseout', function(){obj.scrollBarEl.css('display', 'none');});
+	this.container.on('mouseover', function(){obj.scrollBarWrap.css('display', 'block');});
+	this.container.on('mouseout', function(){obj.scrollBarWrap.css('display', 'none');});
 }
 
 CustomScroll.prototype.onScrollBarMouseDown = function(evt) {
@@ -182,7 +186,7 @@ CustomScroll.prototype.onMouseScroll = function(evt) {
 };
 
 CustomScroll.prototype.scrollBy = function(amount) {
-//	this.updateMaxScrollTop();
+	this.updateMaxScrollTop();
 	if (amount > 0 && this.container[0].scrollTop >= this.maxScrollTop) {
 		return;
 	}
@@ -211,7 +215,7 @@ CustomScroll.prototype.getScrollUnit = function(mouseMoveY) {
 }
 
 CustomScroll.prototype.onDocumentMouseMove = function(evt) {
-//	this.updateMaxScrollTop();
+	this.updateMaxScrollTop();
 	window.getSelection().removeAllRanges();
 	var mouseY = this.mouseY;
 	var mouseMoveY = evt.pageY - mouseY;
@@ -264,10 +268,6 @@ CustomScroll.prototype.getDownScrollUnit = function() {
 	return numerator/denominator;
 }
 
-CustomScroll.prototype.getScrollBarDownLimit = function() {
-	return (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop));
-}
-
 CustomScroll.prototype.getUpScrollUnit = function() {
 //	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
 //	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
@@ -279,6 +279,10 @@ CustomScroll.prototype.getUpScrollUnit = function() {
 		return 0;
 	}
 	return numerator/denominator;
+}
+
+CustomScroll.prototype.getScrollBarDownLimit = function() {
+	return (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop));
 }
 
 CustomScroll.prototype.getContentHeight = function(element) {

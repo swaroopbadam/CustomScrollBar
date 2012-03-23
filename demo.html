@@ -1,570 +1,65 @@
 <html>
-  <head>
-    <title>Demo Custom Scroll Bar</title>
-    <style type="text/css" src="main.css"></style>
-    <script type="text/javascript" src="jquery-1.7.1.js"></script>
-    <script type="text/javascript" src="custom_scrollbar.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			window.scrollBarObj = new CustomScroll('mainBody');
-			window.scrollBarObj2 = new CustomScroll('container2');
-		});
-	</script>
-  </head>
-  <body>
-    <div id="mainBody" style="height: 500px; overflow:auto;width: 500px; float:left; border: 1px solid black;">
-		<div>
-			<p>You can examine all the top-level, referenced commits at any time using the branch
-command:
-$ git branch -v
-* master 5f1bc85 Initial commit
-Say it with me: A branch is nothing more than a named reference to a commit. In this way,
-branches and tags are identical, with the sole exception that tags can have their own descriptions,
-just like the commits they reference. Branches are just names, but tags are descriptive,
-well, “tags”.
-But the fact is, we don’t really need to use aliases at all. For example, if I wanted to, I could
-reference everything in the repository using only the hash ids of its commits. Here’s me being
-straight up loco and resetting the head of my working tree to a particular commit:</p>
+<head>
+<title>Demo of Custom Scroll Bar</title>
+<style type="text/css" src="main.css"></style>
+<script type="text/javascript" src="jquery-1.7.1.js"></script>
+<script type="text/javascript" src="custom_scrollbar.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		window.scrollBarObj = new CustomScroll('container1');
+		window.scrollBarObj2 = new CustomScroll('container2');
+	});
+</script>
+<style type="text/css">
+div.imageFrame img {
+	margin-bottom: 5px;
+}
+div.imageFrame {
+	text-align: center;
+}
+div.pageBody{
+	overflow: auto;
+	margin: auto;
+	width: 1000px;
+}
+div.pageHeader{
+	overflow: auto;
+	margin: auto;
+	width: 1000px;
+}
+</style>
+</head>
+<body>
+	<div class="pageHeader">
+		<h1>Custom Scroll Bar Demo</h1>
+	</div>
+	<div class="pageBody">
+		<div id="container1" style="height: 500px; overflow: auto; width: 700px;">
+			<div class="imageFrame">
+				<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats" title="Lake_And_Boats"/>
+			</div>
+			<div class="imageFrame">
+				<img src="./Green_Heaven.jpg" alt="Green_Heaven" title="Green_Heaven"/>
+			</div>
+			<div class="imageFrame">
+				<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2" title="Lake_And_Boats_2"/>
+			</div>
+			<div class="imageFrame">
+				<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi" title="Lotus_Temple_Delhi"/>
+			</div>
+			<div class="imageFrame">
+				<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra" title="Taj_Mahal_Agra"/>
+			</div>
+			<div class="imageFrame">
+				<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi" title="India_Gate_Delhi"/>
+			</div>
 		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-    </div>
-	<div id="container2" style="overflow:auto; height:500px; width: 500px; border: 1px solid black;">
-		<div>
-			<p>hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>	
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-				<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
+		<div id="container2" style="height: 600px; overflow: auto; width: 800px;">
+			
 		</div>
 	</div>
-    <div style="height: 500px; overflow:auto;width: 500px; border: 1px solid black;">
-		<div>
-			<p>You can examine all the top-level, referenced commits at any time using the branch
-command:
-$ git branch -v
-* master 5f1bc85 Initial commit
-Say it with me: A branch is nothing more than a named reference to a commit. In this way,
-branches and tags are identical, with the sole exception that tags can have their own descriptions,
-just like the commits they reference. Branches are just names, but tags are descriptive,
-well, “tags”.
-But the fact is, we don’t really need to use aliases at all. For example, if I wanted to, I could
-reference everything in the repository using only the hash ids of its commits. Here’s me being
-straight up loco and resetting the head of my working tree to a particular commit:</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-    </div>
-        <div style="height: 500px; overflow:auto;width: 500px; border: 1px solid black;">
-		<div>
-			<p>You can examine all the top-level, referenced commits at any time using the branch
-command:
-$ git branch -v
-* master 5f1bc85 Initial commit
-Say it with me: A branch is nothing more than a named reference to a commit. In this way,
-branches and tags are identical, with the sole exception that tags can have their own descriptions,
-just like the commits they reference. Branches are just names, but tags are descriptive,
-well, “tags”.
-But the fact is, we don’t really need to use aliases at all. For example, if I wanted to, I could
-reference everything in the repository using only the hash ids of its commits. Here’s me being
-straight up loco and resetting the head of my working tree to a particular commit:</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-    </div>
-    <div style="height: 500px; overflow:auto;width: 500px; border: 1px solid black;">
-		<div>
-			<p>You can examine all the top-level, referenced commits at any time using the branch
-command:
-$ git branch -v
-* master 5f1bc85 Initial commit
-Say it with me: A branch is nothing more than a named reference to a commit. In this way,
-branches and tags are identical, with the sole exception that tags can have their own descriptions,
-just like the commits they reference. Branches are just names, but tags are descriptive,
-well, “tags”.
-But the fact is, we don’t really need to use aliases at all. For example, if I wanted to, I could
-reference everything in the repository using only the hash ids of its commits. Here’s me being
-straight up loco and resetting the head of my working tree to a particular commit:</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-    </div>
-    <div style="height: 500px; overflow:auto;width: 500px; border: 1px solid black;">
-		<div>
-			<p>You can examine all the top-level, referenced commits at any time using the branch
-command:
-$ git branch -v
-* master 5f1bc85 Initial commit
-Say it with me: A branch is nothing more than a named reference to a commit. In this way,
-branches and tags are identical, with the sole exception that tags can have their own descriptions,
-just like the commits they reference. Branches are just names, but tags are descriptive,
-well, “tags”.
-But the fact is, we don’t really need to use aliases at all. For example, if I wanted to, I could
-reference everything in the repository using only the hash ids of its commits. Here’s me being
-straight up loco and resetting the head of my working tree to a particular commit:</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-		<div>
-			<p>?e --hard option says to erase all changes currently in my working tree, whether they’ve
-been registered for a checkin or not (more will be said about this command later). A safer way
-to do the same thing is by using checkout:
-$ git checkout 5f1bc85
-?e difference here is that changed files in my working tree are preserved. If I pass the -f
-option to checkout, it acts the same in this case to reset --hard, except that checkout only
-ever changes the working tree, whereas reset --hard changes the current branch's ???? to reference
-the specified version of the tree.
-Another joy of the commit-based system is that you can rephrase even the most complicated
-version control terminology using a single vocabulary. For example, if a commit has multiple
-parents, it’s a “merge commit” — since it merged multiple commits into one. Or, if a commit
-has multiple children, it represents the ancestor of a “branch”, etc. But really there is no difference
-between these things to Git: to it, the world is simply a collection of commit objects, each
-of which holds a tree that references other trees and blobs, which store your data. Anything
-more complicated than this is simply a device of nomenclature.</p>
-		</div>
-    </div>
-
-  </body>
+	<div class="pageFooter">
+		
+	</div>
+</body>
 </html>
