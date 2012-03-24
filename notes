@@ -2,9 +2,13 @@
 //- mouse wheel
 //- scroll on up/down arrow keys  -- using tabindex to get the focus on container when clicked on it.
 //- prevent browser's default behaviour for up/down arrow keys and mouse wheel scroll.
-- top and down arrow buttons in vertical column
 //- vertical column space for scroll bar
 //- click anywhere on the vertical column scrolls content
+//- calculate height of scroll bar for auto config.
+- top and down arrow buttons in vertical column
+/- adjust the maxScrollTop and scroll bar height when content element changes.
+- using scroll bar column offsetHeight instead of container offsetHeight which lets user to have custom height for scroll bar column.
+- mouseover display block and mouseout display none feature. 
 - text selection while dragging shud scroll content
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks (scroll bar with gradient, 3d look)

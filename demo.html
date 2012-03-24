@@ -6,27 +6,42 @@
 <script type="text/javascript" src="custom_scrollbar.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.scrollBarObj = new CustomScroll('container1');
-		window.scrollBarObj2 = new CustomScroll('container2');
+		window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
+		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:'false'});
+		window.contactListScrollBar = new CustomScroll('contactList');
 	});
 </script>
 <style type="text/css">
 div.imageFrame img {
 	margin-bottom: 5px;
 }
+
 div.imageFrame {
 	text-align: center;
 }
-div.pageBody{
+
+div.pageBody {
+	overflow: auto;
+	margin: auto;
+}
+
+div.pageHeader {
 	overflow: auto;
 	margin: auto;
 	width: 1000px;
 }
-div.pageHeader{
-	overflow: auto;
-	margin: auto;
-	width: 1000px;
+div#container2 .reviewBlock{
+font-family: arial;
+font-size: 14px;
+padding: 10px 0;
 }
+div#contactList .contactItem{
+	padding: 5px 10px;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+	font-size: 17px;
+}
+
 </style>
 </head>
 <body>
@@ -34,32 +49,381 @@ div.pageHeader{
 		<h1>Custom Scroll Bar Demo</h1>
 	</div>
 	<div class="pageBody">
-		<div id="container1" style="height: 500px; overflow: auto; width: 700px;">
-			<div class="imageFrame">
-				<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats" title="Lake_And_Boats"/>
+		<div>
+			<div id="container1" style="height: 500px;overflow: auto;width: 700px;float: left;">
+				<div class="imageFrame">
+					<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats"
+						title="Lake_And_Boats" />
+				</div>
+				<div class="imageFrame">
+					<img src="./Green_Heaven.jpg" alt="Green_Heaven"
+						title="Green_Heaven" />
+				</div>
+				<div class="imageFrame">
+					<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2"
+						title="Lake_And_Boats_2" />
+				</div>
+				<div class="imageFrame">
+					<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi"
+						title="Lotus_Temple_Delhi" />
+				</div>
+				<div class="imageFrame">
+					<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra"
+						title="Taj_Mahal_Agra" />
+				</div>
+				<div class="imageFrame">
+					<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi"
+						title="India_Gate_Delhi" />
+				</div>
 			</div>
-			<div class="imageFrame">
-				<img src="./Green_Heaven.jpg" alt="Green_Heaven" title="Green_Heaven"/>
-			</div>
-			<div class="imageFrame">
-				<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2" title="Lake_And_Boats_2"/>
-			</div>
-			<div class="imageFrame">
-				<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi" title="Lotus_Temple_Delhi"/>
-			</div>
-			<div class="imageFrame">
-				<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra" title="Taj_Mahal_Agra"/>
-			</div>
-			<div class="imageFrame">
-				<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi" title="India_Gate_Delhi"/>
+			<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">Ananya Pandey</a>
+						</div>
+						<div class="">19 March 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> Well done </strong>
+						</div>
+						<p class="">The book is good. Well writen
+							structured to be the best part, though i felt that It has some
+							errors in practice exercises. Also the explanation of LOD2 and
+							LOD3 are not at all proper. We got a Hints and Explanation section
+							but that too did not complete the book. May be arun sharma should
+							think of writing a solutions book, for the same. Overall good
+							experience variety of questions and difficulty is also good.</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">RAVINDRA TRIPATHI</a>
+						</div>
+						<div class="">13 March 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> FLIPKART DELIVERY AND THE BOOK </strong>
+						</div>
+						<p class="">HAIL FLIPKART!!!!!
+	THERE ARE NO WORDS ABOUT THE DELIVERY SERVICE OF FLIPKART,
+	
+	ABOUT THE BOOK
+	THERE CAN BE NOTHING BEST THAN THIS FOR PREPARATION OF QUANT
+	the book which i got from flikart had a very average
+	print quality
+	but then when i looked in the local market i found the same!!!!!</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">MBAJAMESBOND</a>
+						</div>
+						<div class="">10 March 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> Very through </strong>
+						</div>
+						<p class="">Hi got this book 3 4 days back from flipkart......After my schooling this was the 1st time i studied quant and i was enjoying it reading arun sharma....I am so much impressed by this book the i am planning to buy LR and VA also.....
+	
+	But there are few printing errors to and during practice questions such have pre assesment test and others the solution was not very impressive...
+	
+	But at the end nice book to brush up concepts and practice..</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">Nirmallya Addy</a>
+						</div>
+						<div class="">04 March 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> GREAT BOOK. </strong>
+						</div>
+						<p class="">ONE OF THE BEST BOOKS IN THE MARKET
+	CONS:
+	1) MANY SOLVED EXAMPLES (MANY UNIQUE SITUATIONS DESCRIBED IN IT).
+	2) EXERCISE IS ABSOLUTELY TIME EXHAUSTIVE.
+	3) ALL TOPICS ARE COVERED FOR CAT.
+	4) EVEN THOSE WHO ARE THINKING FOR JOB SELECTION APTI TESTS IT SERVES THAT PURPOSE AS WELL (NO NEED TO BUY R.S. AGGARWAL OR THAT SORT OF BOOKS SEPARETLY).
+	MAKES IT A FUN FILLED XPERIENCE ONCE U R SOLVING IT.
+	PROS:
+	1)NONE</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">Yasser Khan</a>
+						</div>
+						<div class="">11 Feb 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong>Incredible for someone who has little QA knowledge.</strong>
+						</div>
+						<p class="">I started this book after a little warm up in Quants with the help of a different study material, so which implies that I knew some concepts already before turning the cover page of this book.
+	
+	The first day with this book was really enjoyable. The theory part is explained in an apt way along with the problem exercise. So one can expect thorough concept building plus problem practice from this book. I haven't finished the book but so far so good. The different levels of difficulty are providing useful information and I'm getting a good grasp of things out of this book.
+	
+	Also, I have been told by experts that this is not the only ladder to climb if some one is seriously preparing for CAT. But this book is certainly of great help if the person is not an expert already. Experts can ignore my suggestion. :D
+	
+	So if you are starting your preparation or some where in the middle of it, you must go through it.
+	
+	Happy Learning</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">AJEETESH KUMAR</a>
+						</div>
+						<div class="">01 Feb 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> good extract </strong>
+						</div>
+						<p class="">will post 9 point on 10 scale....very well summarised nd ample of questions to have a handsome confidence on each topics...good book for a naive cat aspirant like me....check out for rs agarwal too...nd finally thanku flipkart for delivering the book on time.....</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviewBlock">
+					<div class="" style="width: 20%;float: left; text-align: left;">
+						<div class="">
+							<div class="" title="">
+								<div class="rating" style="width: 60%;"></div>
+							</div>
+						</div>
+						<div class="">
+							<a style="color: #004B91;font-weight: bold;">Sandeep Kumar</a>
+						</div>
+						<div class="">05 Jan 12</div>
+						<div class="">
+							<img src="./certified_buyer-42557.png" />
+						</div>
+					</div>
+					<div class="" style="width: auto;float: none; overflow: auto;">
+						<div class="">
+							<strong> This is not a book... Its real MATHS...</strong>
+						</div>
+						<p class="">This book is one of the best in the field of CAT preparation. Excellent concepts which lead to a very realistic approach towards solving any problem in the Quantitative Aptitude section. Must buy for a CAT aspirant.</p>
+						<div> 
+							Was this review helpful?
+							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+						</div>
+						<div class="">
+							<div class="">
+								<strong>0</strong> of <strong>0</strong> users found this review helpful.
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="container2" style="height: 600px; overflow: auto; width: 800px;">
-			
+		<div style="padding: 25px">
+			<div id="contactList" style="height: 200px;width: 200px;overflow: auto;">
+				<div class="contactItem">
+					<span>Contact 1</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 2</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 3</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 4</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 5</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 6</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 7</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 8</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 9</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 10</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 11</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 12</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 13</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 14</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 15</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 16</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 17</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 18</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 19</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 20</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 21</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 22</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 23</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 24</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 25</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 26</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 27</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 28</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 29</span>
+				</div>
+				<div class="contactItem">
+					<span>Contact 30</span>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="pageFooter">
-		
-	</div>
+	<div class="pageFooter"></div>
 </body>
 </html>
