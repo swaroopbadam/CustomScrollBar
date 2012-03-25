@@ -1,18 +1,24 @@
 //- scroll bar drag
 //- mouse wheel
-//- scroll on up/down arrow keys  -- using tabindex to get the focus on container when clicked on it.
-//- prevent browser's default behaviour for up/down arrow keys and mouse wheel scroll.
+//- scroll on keyboard up/down keys  -- using tabindex to get the focus on container when clicked on it.
+//- prevent browser's default behaviour for keyboard up/down arrow keys and mouse wheel scroll.
 //- vertical column space for scroll bar
 //- click anywhere on the vertical column scrolls content
 //- calculate height of scroll bar for auto config.
-- top and down arrow buttons in vertical column
-/- adjust the maxScrollTop and scroll bar height when content element changes.
+- top and down arrow buttons in vertical column.
+/- adjust the maxScrollTop and scroll bar height when content element changes (introduced reInit api).
 - using scroll bar column offsetHeight instead of container offsetHeight which lets user to have custom height for scroll bar column.
 - mouseover display block and mouseout display none feature. 
+- showing hand cursor while dragging scroll bar.
+- avoid updateMaxScrollTop as much as possible.
+- get rid of getScrollUnit method.
 - text selection while dragging shud scroll content
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks (scroll bar with gradient, 3d look)
 - various demo samples (use cases like online frnds/contacts box, long product description, comments box, guest users chat box, display of thumbnails)
+	- modify contact list sample
+	- make the demo site look more attractive -- scroll bar to the container with all samples
+	- write more complex samples with scroll bars
 - horizontal scroll bar wid all features of vertical scroll bar
 - various inbuilt stylish bars
 - html5, jquery
