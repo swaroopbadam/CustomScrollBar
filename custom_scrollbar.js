@@ -44,7 +44,7 @@ CustomScroll.prototype.initConfig = function(config) {
 };
 
 CustomScroll.prototype.init = function() {
-	this.container.css('overflow-y', 'hidden');
+	this.container.css('overflow', 'hidden');
 	this.container.attr('tabindex', '0');
 	this.createScrollBar();
 	this.initEventHandlers();
@@ -119,6 +119,7 @@ CustomScroll.prototype.initEventHandlers = function() {
 		this.scrollBarColumn.on('mousedown', function(evt){obj.onColumnMouseDown(evt);});
 		this.scrollBarColumn.on('mouseup', function(evt){obj.onColumnMouseUp(evt);});
 	}
+	this.container.on('mousedown', function(evt){obj.onContainerMouseDown(evt);});
 //	this.container.on('scroll', function(evt){obj.onScroll(evt);});
 //	this.attachMouseOverHandlers();
 };
@@ -129,6 +130,34 @@ CustomScroll.prototype.reInit = function() {
 		this.scrollBarEl.height(this.getScrollBarHeight() + 'px');
 	}
 	this.adjustScrollBarPosition();
+};
+
+CustomScroll.prototype.onContainerMouseDown = function(evt) {
+	if (evt.target == this.scrollBarEl[0]) {
+		return;
+	}
+	var obj = this;
+	this.containerMouseDownPageY = evt.pageY;
+	this.updateMaxScrollTop();
+	$(document).on('mousemove', function(evt){obj.onContainerMouseMove(evt);});
+	$(document).one('mouseup', function(evt){obj.onContainerMouseUp(evt);});
+};
+
+CustomScroll.prototype.onContainerMouseMove = function(evt) {
+	var diff = evt.pageY - (this.container[0].offsetTop + this.container[0].offsetHeight);
+	if (diff > 0) {
+		this.scrollBy(diff * 10);
+		return;
+	}
+	diff = this.container[0].offsetTop - evt.pageY;
+	if (diff > 0) {
+		this.scrollBy(- diff * 10);			
+		return;
+	}
+};
+
+CustomScroll.prototype.onContainerMouseUp = function(evt) {
+	$(document).off('mousemove');
 };
 
 CustomScroll.prototype.onColumnMouseDown = function(evt) {
@@ -150,8 +179,8 @@ CustomScroll.prototype.columnMouseDownScroll = function() {
 //	console.log("columnMouseDownPageY:" + this.columnMouseDownPageY);
 //	console.log("total height:" + (this.container[0].offsetTop + this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight));
 	if (this.columnMouseDownPageY < this.scrollBarEl[0].offsetTop) {
-		if ((this.scrollBarEl[0].offsetTop - this.getScrollBarAmountByScrollAmount(200)) < this.columnMouseDownPageY) {
-			this.scrollBy(-this.getScrollAmountByScrollBarAmount(this.scrollBarEl[0].offsetTop - this.columnMouseDownPageY + this.scrollBarEl[0].offsetHeight / 2));
+		if ((this.scrollBarEl[0].offsetTop - this.getScrollBarTopByScrollTop(200)) < this.columnMouseDownPageY) {
+			this.scrollBy(-this.getScrollTopByScrollBarTop(this.scrollBarEl[0].offsetTop - this.columnMouseDownPageY + this.scrollBarEl[0].offsetHeight / 2));
 			return;
 		} else {
 			this.scrollBy(-200);
@@ -161,8 +190,8 @@ CustomScroll.prototype.columnMouseDownScroll = function() {
 //			return;
 //		}
 	} else if (this.columnMouseDownPageY > (this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight)) {
-		if ((this.scrollBarEl[0].offsetTop + this.getScrollBarAmountByScrollAmount(200)) > this.columnMouseDownPageY) {
-			this.scrollBy(this.getScrollAmountByScrollBarAmount(this.columnMouseDownPageY - this.scrollBarEl[0].offsetTop));
+		if ((this.scrollBarEl[0].offsetTop + this.getScrollBarTopByScrollTop(200)) > this.columnMouseDownPageY) {
+			this.scrollBy(this.getScrollTopByScrollBarTop(this.columnMouseDownPageY - this.scrollBarEl[0].offsetTop));
 			return;
 		} else {
 			this.scrollBy(200);
@@ -260,12 +289,6 @@ CustomScroll.prototype.scrollBy = function(amount) {
 	if (amount < 0 && this.container[0].scrollTop == 0) {
 		return;
 	}
-//	var unit = 0;
-//	if (amount > 0) {
-//		unit = this.getScrollBarDownLimit()/((this.maxScrollTop - this.container[0].scrollTop)/amount);
-//	} else {
-//		unit = (this.scrollBarEl[0].offsetTop - this.container[0].offsetTop)/(this.container[0].scrollTop/amount);
-//	}
 //	console.log('this.container[0].scrollTop:' + this.container[0].scrollTop);
 //	console.log('unit:' + unit);
 	this.container[0].scrollTop += amount;
@@ -278,38 +301,33 @@ CustomScroll.prototype.adjustScrollBarPosition = function() {
 	this.scrollBarEl.css('top', (this.container[0].offsetTop + top) + 'px');
 };
 
-CustomScroll.prototype.getScrollBarAmountByScrollAmount = function(scrollAmount) {
-	return scrollAmount * (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight) / this.maxScrollTop;
+CustomScroll.prototype.adjustContainerScrollTop = function() {
+	var scrollTop = (this.scrollBarEl[0].offsetTop - this.container[0].offsetTop) * this.maxScrollTop / (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight);
+	this.container[0].scrollTop = scrollTop;
 };
 
-CustomScroll.prototype.getScrollAmountByScrollBarAmount = function(scrollBarAmount) {
-	return scrollBarAmount * this.maxScrollTop / (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight);
+CustomScroll.prototype.getScrollBarTopByScrollTop = function(scrollTop) {
+	return scrollTop * (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight) / this.maxScrollTop;
 };
 
-CustomScroll.prototype.getScrollUnit = function(mouseMoveY) {
-	if (mouseMoveY > 0) {
-		return this.getDownScrollUnit();
-	} else if (mouseMoveY < 0) {
-		return this.getUpScrollUnit();
-	}
-	return 0;
+CustomScroll.prototype.getScrollTopByScrollBarTop = function(scrollBarTop) {
+	return scrollBarTop * this.maxScrollTop / (this.container[0].offsetHeight - this.scrollBarEl[0].offsetHeight);
 };
 
 CustomScroll.prototype.onDocumentMouseMove = function(evt) {
-//	this.updateMaxScrollTop();
 	if (window.getSelection)
 		window.getSelection().removeAllRanges();
 	var mouseY = this.mouseY;
 	var mouseMoveY = evt.pageY - mouseY;
 	this.mouseY = evt.pageY;
-	var unit = this.getScrollUnit(mouseMoveY);
+	this.scrollBy(this.getScrollTopByScrollBarTop(mouseMoveY));
+//	var unit = this.getScrollUnit(mouseMoveY);
 //	if (mouseMoveY > 0 && ((this.scrollBarEl[0].offsetTop + this.scrollBarEl[0].offsetHeight - this.container[0].offsetTop) > this.container[0].offsetHeight)) {
 //	  return;
 //	}
 //	if (mouseMoveY < 0 && this.scrollBarEl[0].offsetTop <= this.container[0].offsetTop) {
 //	  return;
 //	}
-	this.scrollBy(mouseMoveY * Math.round(unit));
 //	console.log('mouseMoveY * Math.round(unit):' + mouseMoveY * Math.round(unit));
 //	this.container[0].scrollTop += mouseMoveY * Math.round(unit);
 //	console.log('mouseMoveY: ' + mouseMoveY);
@@ -334,40 +352,40 @@ CustomScroll.prototype.onDocumentMouseUp = function(evt) {
 	$(document).off('mousemove');
 };
 
-CustomScroll.prototype.getDownScrollUnit = function() {
-//	var scrollBarHeight = this.scrollBarEl[0].offsetHeight;
-//	var containerHeight = this.container[0].offsetHeight;
-//	console.log('scrollBarHeight: ' + scrollBarHeight);
-//	console.log('containerHeight: ' + containerHeight);
-//	console.log('this.maxScrollTop: ' + this.maxScrollTop);
-//	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
-//	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
-//	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop);
-	var numerator = this.maxScrollTop - this.container[0].scrollTop;
-	var denominator = this.getScrollBarDownLimit();
-//	console.log('unit:' + numerator/denominator);
-	if (!denominator || denominator < 0 || numerator < 0) {
-		return 0;
-	}
-	return numerator/denominator;
-};
+//CustomScroll.prototype.getDownScrollUnit = function() {
+////	var scrollBarHeight = this.scrollBarEl[0].offsetHeight;
+////	var containerHeight = this.container[0].offsetHeight;
+////	console.log('scrollBarHeight: ' + scrollBarHeight);
+////	console.log('containerHeight: ' + containerHeight);
+////	console.log('this.maxScrollTop: ' + this.maxScrollTop);
+////	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
+////	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
+////	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop);
+//	var numerator = this.maxScrollTop - this.container[0].scrollTop;
+//	var denominator = this.getScrollBarDownLimit();
+////	console.log('unit:' + numerator/denominator);
+//	if (!denominator || denominator < 0 || numerator < 0) {
+//		return 0;
+//	}
+//	return numerator/denominator;
+//};
 
-CustomScroll.prototype.getUpScrollUnit = function() {
-//	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
-//	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
-//	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop); 
-	var numerator = this.container[0].scrollTop;
-	var denominator = this.scrollBarEl[0].offsetTop - this.container[0].offsetTop;
-//	console.log('unit:' + denominator);
-	if (!denominator || denominator < 0 || numerator < 0) {
-		return 0;
-	}
-	return numerator/denominator;
-};
+//CustomScroll.prototype.getUpScrollUnit = function() {
+////	console.log('this.container[0].scrollTop: ' + this.container[0].scrollTop);
+////	console.log('this.container[0].offsetTop: ' + this.container[0].offsetTop);
+////	console.log('this.scrollBarEl[0].offsetTop: ' + this.scrollBarEl[0].offsetTop); 
+//	var numerator = this.container[0].scrollTop;
+//	var denominator = this.scrollBarEl[0].offsetTop - this.container[0].offsetTop;
+////	console.log('unit:' + denominator);
+//	if (!denominator || denominator < 0 || numerator < 0) {
+//		return 0;
+//	}
+//	return numerator/denominator;
+//};
 
-CustomScroll.prototype.getScrollBarDownLimit = function() {
-	return (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop));
-};
+//CustomScroll.prototype.getScrollBarDownLimit = function() {
+//	return (this.container[0].offsetHeight - (this.scrollBarEl[0].offsetHeight + this.scrollBarEl[0].offsetTop - this.container[0].offsetTop));
+//};
 
 CustomScroll.prototype.getScrollBarMinTop = function() {
 	return this.config.topArrow == 'true' ? (this.container[0].offsetTop + this.topArrow[0].offsetHeight) : this.container[0].offsetTop;

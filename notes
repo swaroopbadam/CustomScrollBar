@@ -11,8 +11,9 @@
 - mouseover display block and mouseout display none feature. 
 - showing hand cursor while dragging scroll bar.
 - avoid updateMaxScrollTop as much as possible.
-- get rid of getScrollUnit method.
-- text selection while dragging shud scroll content
+//- get rid of getScrollUnit method.
+- getting offsetTop by climbing up the offsetParent chain.
+//- text selection while dragging shud scroll content
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks (scroll bar with gradient, 3d look)
 - various demo samples (use cases like online frnds/contacts box, long product description, comments box, guest users chat box, display of thumbnails)
@@ -22,3 +23,7 @@
 - horizontal scroll bar wid all features of vertical scroll bar
 - various inbuilt stylish bars
 - html5, jquery
+
+- New Idea : dom element change custom event
+	- poll every few secs to see if there is any diff in previous and current innerHTML or nodes.
+	- let the user trigger the api to see if there is any diff in current and prev html.
