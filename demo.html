@@ -6,12 +6,16 @@
 <script type="text/javascript" src="custom_scrollbar.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
-		window.scrollBarObj2 = new CustomScroll('container2', {colW : "5"});
-		window.contactListScrollBar = new CustomScroll('contactList');
+		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false"});
+		window.contactListScrollBar = new CustomScroll('contactList', {verticalColumn:"false"});
+		window.scrollBarObj = new CustomScroll('pageBody');
+		//window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
 	});
 </script>
 <style type="text/css">
+body {
+	background-color: #7D7D7D;
+}
 div.imageFrame img {
 	margin-bottom: 5px;
 }
@@ -23,12 +27,15 @@ div.imageFrame {
 div.pageBody {
 	overflow: auto;
 	margin: auto;
+	width: 1000px;
+	background-color: #FFF;
 }
 
 div.pageHeader {
 	overflow: auto;
 	margin: auto;
-	width: 1000px;
+	border-bottom: 1px solid black;
+	color: white;
 }
 div#container2 .reviewBlock{
 font-family: arial;
@@ -48,380 +55,409 @@ div#contactList .contactItem{
 	<div class="pageHeader">
 		<h1>Custom Scroll Bar Demo</h1>
 	</div>
-	<div class="pageBody">
-		<div>
-			<div id="container1" style="height: 500px;overflow: auto;width: 700px;float: left;">
-				<div class="imageFrame">
-					<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats"
-						title="Lake_And_Boats" />
+	<div class="pageBody" id="pageBody" style="height: 850px;">
+		<div style="height: 20px;"></div>
+		<div style="padding-left:30px;text-decoration: underline;"><h3>Review comments sample with custom scroll bar</h3></div>
+		<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
+						</div>
+					</div>
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">Ananya Pandey</a>
+					</div>
+					<div class="">19 March 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
 				</div>
-				<div class="imageFrame">
-					<img src="./Green_Heaven.jpg" alt="Green_Heaven"
-						title="Green_Heaven" />
-				</div>
-				<div class="imageFrame">
-					<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2"
-						title="Lake_And_Boats_2" />
-				</div>
-				<div class="imageFrame">
-					<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi"
-						title="Lotus_Temple_Delhi" />
-				</div>
-				<div class="imageFrame">
-					<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra"
-						title="Taj_Mahal_Agra" />
-				</div>
-				<div class="imageFrame">
-					<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi"
-						title="India_Gate_Delhi" />
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> Well done </strong>
+					</div>
+					<p class="">The book is good. Well writen
+						structured to be the best part, though i felt that It has some
+						errors in practice exercises. Also the explanation of LOD2 and
+						LOD3 are not at all proper. We got a Hints and Explanation section
+						but that too did not complete the book. May be arun sharma should
+						think of writing a solutions book, for the same. Overall good
+						experience variety of questions and difficulty is also good.</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
+						<div class="">
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
+						</div>
+					</div>
 				</div>
 			</div>
-			<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">Ananya Pandey</a>
-						</div>
-						<div class="">19 March 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">RAVINDRA TRIPATHI</a>
+					</div>
+					<div class="">13 March 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
+				</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> FLIPKART DELIVERY AND THE BOOK </strong>
+					</div>
+					<p class="">HAIL FLIPKART!!!!!
+THERE ARE NO WORDS ABOUT THE DELIVERY SERVICE OF FLIPKART,
+
+ABOUT THE BOOK
+THERE CAN BE NOTHING BEST THAN THIS FOR PREPARATION OF QUANT
+the book which i got from flikart had a very average
+print quality
+but then when i looked in the local market i found the same!!!!!</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong> Well done </strong>
-						</div>
-						<p class="">The book is good. Well writen
-							structured to be the best part, though i felt that It has some
-							errors in practice exercises. Also the explanation of LOD2 and
-							LOD3 are not at all proper. We got a Hints and Explanation section
-							but that too did not complete the book. May be arun sharma should
-							think of writing a solutions book, for the same. Overall good
-							experience variety of questions and difficulty is also good.</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">RAVINDRA TRIPATHI</a>
-						</div>
-						<div class="">13 March 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			</div>
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">MBAJAMESBOND</a>
+					</div>
+					<div class="">10 March 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
+				</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> Very through </strong>
+					</div>
+					<p class="">Hi got this book 3 4 days back from flipkart......After my schooling this was the 1st time i studied quant and i was enjoying it reading arun sharma....I am so much impressed by this book the i am planning to buy LR and VA also.....
+
+But there are few printing errors to and during practice questions such have pre assesment test and others the solution was not very impressive...
+
+But at the end nice book to brush up concepts and practice..</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong> FLIPKART DELIVERY AND THE BOOK </strong>
-						</div>
-						<p class="">HAIL FLIPKART!!!!!
-	THERE ARE NO WORDS ABOUT THE DELIVERY SERVICE OF FLIPKART,
-	
-	ABOUT THE BOOK
-	THERE CAN BE NOTHING BEST THAN THIS FOR PREPARATION OF QUANT
-	the book which i got from flikart had a very average
-	print quality
-	but then when i looked in the local market i found the same!!!!!</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">MBAJAMESBOND</a>
-						</div>
-						<div class="">10 March 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			</div>
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">Nirmallya Addy</a>
+					</div>
+					<div class="">04 March 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
+				</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> GREAT BOOK. </strong>
+					</div>
+					<p class="">ONE OF THE BEST BOOKS IN THE MARKET
+CONS:
+1) MANY SOLVED EXAMPLES (MANY UNIQUE SITUATIONS DESCRIBED IN IT).
+2) EXERCISE IS ABSOLUTELY TIME EXHAUSTIVE.
+3) ALL TOPICS ARE COVERED FOR CAT.
+4) EVEN THOSE WHO ARE THINKING FOR JOB SELECTION APTI TESTS IT SERVES THAT PURPOSE AS WELL (NO NEED TO BUY R.S. AGGARWAL OR THAT SORT OF BOOKS SEPARETLY).
+MAKES IT A FUN FILLED XPERIENCE ONCE U R SOLVING IT.
+PROS:
+1)NONE</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong> Very through </strong>
-						</div>
-						<p class="">Hi got this book 3 4 days back from flipkart......After my schooling this was the 1st time i studied quant and i was enjoying it reading arun sharma....I am so much impressed by this book the i am planning to buy LR and VA also.....
-	
-	But there are few printing errors to and during practice questions such have pre assesment test and others the solution was not very impressive...
-	
-	But at the end nice book to brush up concepts and practice..</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">Nirmallya Addy</a>
-						</div>
-						<div class="">04 March 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			</div>
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">Yasser Khan</a>
+					</div>
+					<div class="">11 Feb 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
+				</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong>Incredible for someone who has little QA knowledge.</strong>
+					</div>
+					<p class="">I started this book after a little warm up in Quants with the help of a different study material, so which implies that I knew some concepts already before turning the cover page of this book.
+
+The first day with this book was really enjoyable. The theory part is explained in an apt way along with the problem exercise. So one can expect thorough concept building plus problem practice from this book. I haven't finished the book but so far so good. The different levels of difficulty are providing useful information and I'm getting a good grasp of things out of this book.
+
+Also, I have been told by experts that this is not the only ladder to climb if some one is seriously preparing for CAT. But this book is certainly of great help if the person is not an expert already. Experts can ignore my suggestion. :D
+
+So if you are starting your preparation or some where in the middle of it, you must go through it.
+
+Happy Learning</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong> GREAT BOOK. </strong>
-						</div>
-						<p class="">ONE OF THE BEST BOOKS IN THE MARKET
-	CONS:
-	1) MANY SOLVED EXAMPLES (MANY UNIQUE SITUATIONS DESCRIBED IN IT).
-	2) EXERCISE IS ABSOLUTELY TIME EXHAUSTIVE.
-	3) ALL TOPICS ARE COVERED FOR CAT.
-	4) EVEN THOSE WHO ARE THINKING FOR JOB SELECTION APTI TESTS IT SERVES THAT PURPOSE AS WELL (NO NEED TO BUY R.S. AGGARWAL OR THAT SORT OF BOOKS SEPARETLY).
-	MAKES IT A FUN FILLED XPERIENCE ONCE U R SOLVING IT.
-	PROS:
-	1)NONE</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">Yasser Khan</a>
-						</div>
-						<div class="">11 Feb 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			</div>
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">AJEETESH KUMAR</a>
+					</div>
+					<div class="">01 Feb 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
+					</div>
+				</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> good extract </strong>
+					</div>
+					<p class="">will post 9 point on 10 scale....very well summarised nd ample of questions to have a handsome confidence on each topics...good book for a naive cat aspirant like me....check out for rs agarwal too...nd finally thanku flipkart for delivering the book on time.....</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong>Incredible for someone who has little QA knowledge.</strong>
-						</div>
-						<p class="">I started this book after a little warm up in Quants with the help of a different study material, so which implies that I knew some concepts already before turning the cover page of this book.
-	
-	The first day with this book was really enjoyable. The theory part is explained in an apt way along with the problem exercise. So one can expect thorough concept building plus problem practice from this book. I haven't finished the book but so far so good. The different levels of difficulty are providing useful information and I'm getting a good grasp of things out of this book.
-	
-	Also, I have been told by experts that this is not the only ladder to climb if some one is seriously preparing for CAT. But this book is certainly of great help if the person is not an expert already. Experts can ignore my suggestion. :D
-	
-	So if you are starting your preparation or some where in the middle of it, you must go through it.
-	
-	Happy Learning</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">AJEETESH KUMAR</a>
-						</div>
-						<div class="">01 Feb 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
+			</div>
+			<div class="reviewBlock">
+				<div class="" style="width: 20%;float: left; text-align: left;">
+					<div class="">
+						<div class="" title="">
+							<div class="rating" style="width: 60%;"></div>
 						</div>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
-						<div class="">
-							<strong> good extract </strong>
-						</div>
-						<p class="">will post 9 point on 10 scale....very well summarised nd ample of questions to have a handsome confidence on each topics...good book for a naive cat aspirant like me....check out for rs agarwal too...nd finally thanku flipkart for delivering the book on time.....</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
-						</div>
+					<div class="">
+						<a style="color: #004B91;font-weight: bold;">Sandeep Kumar</a>
+					</div>
+					<div class="">05 Jan 12</div>
+					<div class="">
+						<img src="./certified_buyer-42557.png" />
 					</div>
 				</div>
-				<div class="reviewBlock">
-					<div class="" style="width: 20%;float: left; text-align: left;">
-						<div class="">
-							<div class="" title="">
-								<div class="rating" style="width: 60%;"></div>
-							</div>
-						</div>
-						<div class="">
-							<a style="color: #004B91;font-weight: bold;">Sandeep Kumar</a>
-						</div>
-						<div class="">05 Jan 12</div>
-						<div class="">
-							<img src="./certified_buyer-42557.png" />
-						</div>
+				<div class="" style="width: auto;float: none; overflow: auto;">
+					<div class="">
+						<strong> This is not a book... Its real MATHS...</strong>
 					</div>
-					<div class="" style="width: auto;float: none; overflow: auto;">
+					<p class="">This book is one of the best in the field of CAT preparation. Excellent concepts which lead to a very realistic approach towards solving any problem in the Quantitative Aptitude section. Must buy for a CAT aspirant.</p>
+					<div> 
+						Was this review helpful?
+						<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
+					</div>
+					<div class="">
 						<div class="">
-							<strong> This is not a book... Its real MATHS...</strong>
-						</div>
-						<p class="">This book is one of the best in the field of CAT preparation. Excellent concepts which lead to a very realistic approach towards solving any problem in the Quantitative Aptitude section. Must buy for a CAT aspirant.</p>
-						<div> 
-							Was this review helpful?
-							<span><a style="font-weight: bold;">Yes</a>&nbsp;/&nbsp;<a style="font-weight: bold;">No</a></span>
-						</div>
-						<div class="">
-							<div class="">
-								<strong>0</strong> of <strong>0</strong> users found this review helpful.
-							</div>
+							<strong>0</strong> of <strong>0</strong> users found this review helpful.
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div style="padding: 25px">
-			<div id="contactList" style="height: 200px;width: 200px;overflow: auto;">
-				<div class="contactItem">
-					<span>Contact 1</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 2</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 3</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 4</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 5</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 6</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 7</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 8</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 9</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 10</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 11</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 12</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 13</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 14</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 15</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 16</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 17</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 18</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 19</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 20</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 21</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 22</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 23</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 24</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 25</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 26</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 27</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 28</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 29</span>
-				</div>
-				<div class="contactItem">
-					<span>Contact 30</span>
-				</div>
+		<!-- <div id="container1" style="height: 500px;overflow: auto;width: 700px;">
+			<div class="imageFrame">
+				<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats"
+					title="Lake_And_Boats" />
 			</div>
+			<div class="imageFrame">
+				<img src="./Green_Heaven.jpg" alt="Green_Heaven"
+					title="Green_Heaven" />
+			</div>
+			<div class="imageFrame">
+				<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2"
+					title="Lake_And_Boats_2" />
+			</div>
+			<div class="imageFrame">
+				<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi"
+					title="Lotus_Temple_Delhi" />
+			</div>
+			<div class="imageFrame">
+				<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra"
+					title="Taj_Mahal_Agra" />
+			</div>
+			<div class="imageFrame">
+				<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi"
+					title="India_Gate_Delhi" />
+			</div>
+		</div> -->
+		<div style="padding-left:30px;text-decoration: underline;"><h3>Contact List sample with custom scroll bar</h3></div>
+		<div id="contactList" style="height: 200px;width: 200px;overflow: auto;margin: 30px 0 0 200px;">
+			<div class="contactItem">
+				<span>Contact 1</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 2</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 3</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 4</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 5</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 6</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 7</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 8</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 9</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 10</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 11</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 12</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 13</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 14</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 15</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 16</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 17</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 18</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 19</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 20</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 21</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 22</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 23</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 24</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 25</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 26</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 27</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 28</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 29</span>
+			</div>
+			<div class="contactItem">
+				<span>Contact 30</span>
+			</div>
+		</div>
+        <div style="padding: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam urna est, malesuada vitae ullamcorper in, pellentesque at felis. Maecenas suscipit, neque vitae dictum laoreet, orci tellus lacinia orci, et ultrices lorem quam nec elit. Mauris posuere dolor non lorem placerat vulputate. Nulla aliquet, tortor non egestas vehicula, justo lacus porta ipsum, eu imperdiet odio ipsum vel tellus. Nam pulvinar tristique tellus eget egestas. Pellentesque vehicula dignissim arcu vitae rutrum. Proin lorem nisl, accumsan in dictum congue, tempor eget orci. Etiam auctor lacus sem. Fusce erat velit, vehicula sit amet feugiat id, lobortis sit amet enim. Fusce tempus orci ullamcorper nisl malesuada ac interdum lectus convallis. Vestibulum elementum egestas nulla a dictum.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu tortor at sem tincidunt feugiat. Donec vehicula aliquam adipiscing. Nam vel mauris ac odio varius euismod in nec urna. Praesent ligula magna, laoreet interdum egestas in, suscipit vitae odio. Nullam scelerisque posuere nisi, at interdum erat iaculis id. Duis velit orci, aliquam eu sodales vel, aliquam non mauris. Duis dapibus pharetra lectus facilisis hendrerit. Cras tincidunt arcu eu ligula aliquet bibendum. Nunc eget vestibulum sapien. Sed diam nibh, imperdiet sit amet auctor quis, tristique sed est. Sed malesuada interdum justo, et lobortis est facilisis ut. Nullam nisi lectus, pellentesque nec tincidunt eget, dictum eu felis.
+
+Nunc adipiscing aliquet neque id faucibus. Pellentesque imperdiet est non eros mattis vel fermentum augue volutpat. Nam augue justo, dictum viverra iaculis vitae, accumsan ut massa. Maecenas a purus ut neque rhoncus viverra. Duis purus ante, euismod ut aliquam a, luctus ut massa. Integer sem lacus, viverra et feugiat sit amet, posuere et lacus. Suspendisse mi dolor, imperdiet eget mattis ut, feugiat eget urna. Sed interdum, risus et pretium mollis, turpis nulla lacinia velit, quis gravida ligula orci nec lacus. Proin consequat ornare risus, at egestas tellus accumsan quis. Aenean laoreet, ligula pulvinar lobortis volutpat, enim justo sollicitudin urna, ut ultrices nisl ipsum pretium neque. Aenean molestie neque in quam dapibus quis sollicitudin turpis sollicitudin. Proin bibendum, massa sit amet pulvinar pretium, erat ante pellentesque orci, in suscipit nisi nisi sed sapien. Sed dolor nulla, sodales in tempor fermentum, adipiscing egestas lectus. Pellentesque scelerisque adipiscing nibh, eget malesuada odio lacinia eget. Phasellus eget mauris vitae neque malesuada sagittis nec eget nisi. Nulla in sem et quam ultrices dictum eget ac sapien.
+
+Morbi volutpat dapibus felis, eget ultrices metus condimentum eu. Proin congue enim sit amet augue gravida euismod. Vivamus sit amet volutpat magna. Maecenas nulla nunc, vehicula non vulputate et, sodales sit amet felis. Quisque lacus eros, tempus non mattis ac, congue id elit. Nam eu urna ut arcu ornare tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent rhoncus pulvinar tortor, eu porttitor sem blandit ac. Sed consequat adipiscing leo quis convallis. Nulla non sollicitudin risus. Mauris hendrerit tortor eget massa porttitor non scelerisque nisi facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean at urna at purus vehicula venenatis ac sed libero. Phasellus est erat, hendrerit volutpat vehicula a, vehicula ut ante. In molestie vehicula porttitor. Vestibulum lobortis, ante vitae ultricies porta, tellus libero molestie quam, quis egestas libero ipsum interdum nibh.
+
+Maecenas tempus nisi vel magna venenatis pellentesque. Mauris nunc mi, adipiscing non malesuada eget, tempor nec arcu. In feugiat pellentesque mauris, vitae ultrices massa hendrerit non. Aenean hendrerit enim ac urna blandit congue. Sed sollicitudin, orci ut dapibus vestibulum, justo nibh aliquet leo, volutpat scelerisque leo quam vitae urna. Ut vel erat sit amet augue dictum rutrum ut quis justo. Proin bibendum quam vitae elit ultrices non aliquet orci mollis. Integer et metus purus, nec pretium tellus. Vestibulum adipiscing tempus odio, sit amet sollicitudin turpis vehicula quis. Nulla facilisi. Nulla non quam lectus, nec lacinia dui. Cras et tincidunt lacus. Ut egestas sollicitudin facilisis. Praesent dapibus porttitor blandit. Vivamus eget ligula eget enim vulputate eleifend sed vitae felis. Maecenas at neque et turpis pharetra condimentum ullamcorper vel urna.
+		</div>
+        <div style="padding: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam urna est, malesuada vitae ullamcorper in, pellentesque at felis. Maecenas suscipit, neque vitae dictum laoreet, orci tellus lacinia orci, et ultrices lorem quam nec elit. Mauris posuere dolor non lorem placerat vulputate. Nulla aliquet, tortor non egestas vehicula, justo lacus porta ipsum, eu imperdiet odio ipsum vel tellus. Nam pulvinar tristique tellus eget egestas. Pellentesque vehicula dignissim arcu vitae rutrum. Proin lorem nisl, accumsan in dictum congue, tempor eget orci. Etiam auctor lacus sem. Fusce erat velit, vehicula sit amet feugiat id, lobortis sit amet enim. Fusce tempus orci ullamcorper nisl malesuada ac interdum lectus convallis. Vestibulum elementum egestas nulla a dictum.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu tortor at sem tincidunt feugiat. Donec vehicula aliquam adipiscing. Nam vel mauris ac odio varius euismod in nec urna. Praesent ligula magna, laoreet interdum egestas in, suscipit vitae odio. Nullam scelerisque posuere nisi, at interdum erat iaculis id. Duis velit orci, aliquam eu sodales vel, aliquam non mauris. Duis dapibus pharetra lectus facilisis hendrerit. Cras tincidunt arcu eu ligula aliquet bibendum. Nunc eget vestibulum sapien. Sed diam nibh, imperdiet sit amet auctor quis, tristique sed est. Sed malesuada interdum justo, et lobortis est facilisis ut. Nullam nisi lectus, pellentesque nec tincidunt eget, dictum eu felis.
+
+Nunc adipiscing aliquet neque id faucibus. Pellentesque imperdiet est non eros mattis vel fermentum augue volutpat. Nam augue justo, dictum viverra iaculis vitae, accumsan ut massa. Maecenas a purus ut neque rhoncus viverra. Duis purus ante, euismod ut aliquam a, luctus ut massa. Integer sem lacus, viverra et feugiat sit amet, posuere et lacus. Suspendisse mi dolor, imperdiet eget mattis ut, feugiat eget urna. Sed interdum, risus et pretium mollis, turpis nulla lacinia velit, quis gravida ligula orci nec lacus. Proin consequat ornare risus, at egestas tellus accumsan quis. Aenean laoreet, ligula pulvinar lobortis volutpat, enim justo sollicitudin urna, ut ultrices nisl ipsum pretium neque. Aenean molestie neque in quam dapibus quis sollicitudin turpis sollicitudin. Proin bibendum, massa sit amet pulvinar pretium, erat ante pellentesque orci, in suscipit nisi nisi sed sapien. Sed dolor nulla, sodales in tempor fermentum, adipiscing egestas lectus. Pellentesque scelerisque adipiscing nibh, eget malesuada odio lacinia eget. Phasellus eget mauris vitae neque malesuada sagittis nec eget nisi. Nulla in sem et quam ultrices dictum eget ac sapien.
+
+Morbi volutpat dapibus felis, eget ultrices metus condimentum eu. Proin congue enim sit amet augue gravida euismod. Vivamus sit amet volutpat magna. Maecenas nulla nunc, vehicula non vulputate et, sodales sit amet felis. Quisque lacus eros, tempus non mattis ac, congue id elit. Nam eu urna ut arcu ornare tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent rhoncus pulvinar tortor, eu porttitor sem blandit ac. Sed consequat adipiscing leo quis convallis. Nulla non sollicitudin risus. Mauris hendrerit tortor eget massa porttitor non scelerisque nisi facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean at urna at purus vehicula venenatis ac sed libero. Phasellus est erat, hendrerit volutpat vehicula a, vehicula ut ante. In molestie vehicula porttitor. Vestibulum lobortis, ante vitae ultricies porta, tellus libero molestie quam, quis egestas libero ipsum interdum nibh.
+
+Maecenas tempus nisi vel magna venenatis pellentesque. Mauris nunc mi, adipiscing non malesuada eget, tempor nec arcu. In feugiat pellentesque mauris, vitae ultrices massa hendrerit non. Aenean hendrerit enim ac urna blandit congue. Sed sollicitudin, orci ut dapibus vestibulum, justo nibh aliquet leo, volutpat scelerisque leo quam vitae urna. Ut vel erat sit amet augue dictum rutrum ut quis justo. Proin bibendum quam vitae elit ultrices non aliquet orci mollis. Integer et metus purus, nec pretium tellus. Vestibulum adipiscing tempus odio, sit amet sollicitudin turpis vehicula quis. Nulla facilisi. Nulla non quam lectus, nec lacinia dui. Cras et tincidunt lacus. Ut egestas sollicitudin facilisis. Praesent dapibus porttitor blandit. Vivamus eget ligula eget enim vulputate eleifend sed vitae felis. Maecenas at neque et turpis pharetra condimentum ullamcorper vel urna.
+		</div>
+        <div style="padding: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam urna est, malesuada vitae ullamcorper in, pellentesque at felis. Maecenas suscipit, neque vitae dictum laoreet, orci tellus lacinia orci, et ultrices lorem quam nec elit. Mauris posuere dolor non lorem placerat vulputate. Nulla aliquet, tortor non egestas vehicula, justo lacus porta ipsum, eu imperdiet odio ipsum vel tellus. Nam pulvinar tristique tellus eget egestas. Pellentesque vehicula dignissim arcu vitae rutrum. Proin lorem nisl, accumsan in dictum congue, tempor eget orci. Etiam auctor lacus sem. Fusce erat velit, vehicula sit amet feugiat id, lobortis sit amet enim. Fusce tempus orci ullamcorper nisl malesuada ac interdum lectus convallis. Vestibulum elementum egestas nulla a dictum.
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu tortor at sem tincidunt feugiat. Donec vehicula aliquam adipiscing. Nam vel mauris ac odio varius euismod in nec urna. Praesent ligula magna, laoreet interdum egestas in, suscipit vitae odio. Nullam scelerisque posuere nisi, at interdum erat iaculis id. Duis velit orci, aliquam eu sodales vel, aliquam non mauris. Duis dapibus pharetra lectus facilisis hendrerit. Cras tincidunt arcu eu ligula aliquet bibendum. Nunc eget vestibulum sapien. Sed diam nibh, imperdiet sit amet auctor quis, tristique sed est. Sed malesuada interdum justo, et lobortis est facilisis ut. Nullam nisi lectus, pellentesque nec tincidunt eget, dictum eu felis.
+
+Nunc adipiscing aliquet neque id faucibus. Pellentesque imperdiet est non eros mattis vel fermentum augue volutpat. Nam augue justo, dictum viverra iaculis vitae, accumsan ut massa. Maecenas a purus ut neque rhoncus viverra. Duis purus ante, euismod ut aliquam a, luctus ut massa. Integer sem lacus, viverra et feugiat sit amet, posuere et lacus. Suspendisse mi dolor, imperdiet eget mattis ut, feugiat eget urna. Sed interdum, risus et pretium mollis, turpis nulla lacinia velit, quis gravida ligula orci nec lacus. Proin consequat ornare risus, at egestas tellus accumsan quis. Aenean laoreet, ligula pulvinar lobortis volutpat, enim justo sollicitudin urna, ut ultrices nisl ipsum pretium neque. Aenean molestie neque in quam dapibus quis sollicitudin turpis sollicitudin. Proin bibendum, massa sit amet pulvinar pretium, erat ante pellentesque orci, in suscipit nisi nisi sed sapien. Sed dolor nulla, sodales in tempor fermentum, adipiscing egestas lectus. Pellentesque scelerisque adipiscing nibh, eget malesuada odio lacinia eget. Phasellus eget mauris vitae neque malesuada sagittis nec eget nisi. Nulla in sem et quam ultrices dictum eget ac sapien.
+
+Morbi volutpat dapibus felis, eget ultrices metus condimentum eu. Proin congue enim sit amet augue gravida euismod. Vivamus sit amet volutpat magna. Maecenas nulla nunc, vehicula non vulputate et, sodales sit amet felis. Quisque lacus eros, tempus non mattis ac, congue id elit. Nam eu urna ut arcu ornare tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent rhoncus pulvinar tortor, eu porttitor sem blandit ac. Sed consequat adipiscing leo quis convallis. Nulla non sollicitudin risus. Mauris hendrerit tortor eget massa porttitor non scelerisque nisi facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean at urna at purus vehicula venenatis ac sed libero. Phasellus est erat, hendrerit volutpat vehicula a, vehicula ut ante. In molestie vehicula porttitor. Vestibulum lobortis, ante vitae ultricies porta, tellus libero molestie quam, quis egestas libero ipsum interdum nibh.
+
+Maecenas tempus nisi vel magna venenatis pellentesque. Mauris nunc mi, adipiscing non malesuada eget, tempor nec arcu. In feugiat pellentesque mauris, vitae ultrices massa hendrerit non. Aenean hendrerit enim ac urna blandit congue. Sed sollicitudin, orci ut dapibus vestibulum, justo nibh aliquet leo, volutpat scelerisque leo quam vitae urna. Ut vel erat sit amet augue dictum rutrum ut quis justo. Proin bibendum quam vitae elit ultrices non aliquet orci mollis. Integer et metus purus, nec pretium tellus. Vestibulum adipiscing tempus odio, sit amet sollicitudin turpis vehicula quis. Nulla facilisi. Nulla non quam lectus, nec lacinia dui. Cras et tincidunt lacus. Ut egestas sollicitudin facilisis. Praesent dapibus porttitor blandit. Vivamus eget ligula eget enim vulputate eleifend sed vitae felis. Maecenas at neque et turpis pharetra condimentum ullamcorper vel urna.
 		</div>
 	</div>
 	<div class="pageFooter"></div>
