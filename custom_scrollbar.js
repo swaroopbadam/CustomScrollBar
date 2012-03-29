@@ -30,6 +30,10 @@ CustomScroll.prototype.DEFAULT_CONFIG = {
 	topArrow : 'true',
 	bottomArrow : 'true'
 };
+CustomScroll.prototype.PAGE_DOWN_KEY_SCROLL = 430;
+CustomScroll.prototype.DOWN_KEY_SCROLL = 40;
+CustomScroll.prototype.MOUSE_WHEEL_SCROLL = 40;
+
 
 CustomScroll.prototype.initConfig = function(config) {
 	if (typeof(config) != 'object') {
@@ -52,13 +56,13 @@ CustomScroll.prototype.init = function() {
 	this.mouseY = 0;
 };
 
-CustomScroll.prototype.updateMaxScrollTop = function() {
-	var scrollTop = this.container[0].scrollTop;
-	var contentHeight = window.getContentHeight(this.container[0]);
-	this.container[0].scrollTop = contentHeight;
-	this.maxScrollTop = this.container[0].scrollTop;
-	this.container[0].scrollTop = scrollTop;
-};
+//CustomScroll.prototype.updateMaxScrollTop = function() {
+//	var scrollTop = this.container[0].scrollTop;
+//	var contentHeight = window.getContentHeight(this.container[0]);
+//	this.container[0].scrollTop = contentHeight;
+//	this.maxScrollTop = this.container[0].scrollTop;
+//	this.container[0].scrollTop = scrollTop;
+//};
 
 CustomScroll.prototype.createScrollBar = function() {
 	this.makeChildrenAsSingleNode(this.container);
@@ -113,9 +117,13 @@ CustomScroll.prototype.createScrollBar = function() {
 //	this.scrollDownButton = scrollDownButton.appendTo(this.scrollBarWrap);
 };
 
+/* Calculates the scroll bar height using the expression
+ * x = % of container height in content height (containerHeight * 100 / contentHeight)
+ * scrollbar height = x % of container height (x * containerHeight / 100)
+ * @return {Number}
+ */
 CustomScroll.prototype.getScrollBarHeight = function() {
-	var contentHt = window.getContentHeight(this.container[0]);
-	var scrollBarHeight = Math.pow(this.container[0].offsetHeight, 2) / contentHt;
+	var scrollBarHeight = Math.pow(this.container[0].offsetHeight, 2) / this.contentEl[0].offsetHeight;
 	return scrollBarHeight > 20 ? scrollBarHeight : 20;
 };
 
