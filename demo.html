@@ -7,7 +7,7 @@
 <script type="text/javascript" src="custom_scrollbar.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false",barW:"10"});
+		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false",barW:"10", topArrow:"false"});
 		window.contactListScrollBar = new CustomScroll('contactList', {verticalColumn:"false",barW:"10"});
 		window.scrollBarObj = new CustomScroll('pageBody');
 		//window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
@@ -26,6 +26,7 @@ div.imageFrame {
 }
 
 div.pageBody {
+	font-family: arial;
 	overflow: auto;
 	margin: auto;
 	width: 1000px;
@@ -37,11 +38,11 @@ div.pageHeader {
 	margin: auto;
 	border-bottom: 1px solid black;
 	color: white;
+	width: 1000px;
 }
 div#container2 .reviewBlock{
-font-family: arial;
-font-size: 14px;
-padding: 10px 0;
+	font-size: 14px;
+	padding: 10px 0;
 }
 div#contactList .contactItem{
 	padding: 5px 10px;
@@ -59,7 +60,15 @@ div#contactList .contactItem{
 	</div>
 	<div class="pageBody" id="pageBody" style="height: 820px;">
 		<div style="height: 20px;"></div>
+		<div style="padding:0 30px 0 30px;">
+			<p>All the below samples have content which overflows out of the container.
+			There scrollbar has been replaced with a custom scrollbar using my plugin.
+			The page body container which has all samples inside itself has been plugged with my custom scrollbar which demonstrates the nested container use case.</p>
+		</div>
 		<div style="padding-left:30px;text-decoration: underline;"><h3>Review comments sample with custom scroll bar</h3></div>
+		<div style="padding:0 30px 0 30px;">
+			<p>This sample has been configured with auto height scrollbar, width 10px (default being 15px), no vertical column behind scrollbar, no up arrow button.</p>
+		</div>
 		<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
 			<div class="reviewBlock">
 				<div class="" style="width: 20%;float: left; text-align: left;">

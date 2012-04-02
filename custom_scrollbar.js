@@ -95,28 +95,33 @@ CustomScroll.prototype.createScrollBar = function() {
 //	scrollBarDiv.css('border-radius', '8px');
 	scrollBarDiv.css('cursor', 'pointer');
 	scrollBarDiv.css('opacity', this.config.barOpacity);
-	scrollBarDiv.css('top', '20px');
+	var scrollBarTop = this.config.topArrow == 'true' ? '20px' : '0px';
+	scrollBarDiv.css('top', scrollBarTop);
 	scrollBarDiv.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
 	this.scrollBarEl = scrollBarDiv.appendTo(this.scrollBarWrap);
-	var scrollUpButton = $('<div></div>');
-	scrollUpButton.width(parseInt(this.config.barW) + 'px');
-	scrollUpButton.height('20px');
-	scrollUpButton.css('position', 'absolute');
-	scrollUpButton.css('float', 'left');
-	scrollUpButton.css('background-color', 'black');
-	scrollUpButton.css('opacity', '0.8');
-	scrollUpButton.css('top', '0px');
-	scrollUpButton.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
-	this.scrollUpButton = scrollUpButton.appendTo(this.scrollBarWrap);
-	var scrollDownButton = $('<div></div>');
-	scrollDownButton.width(parseInt(this.config.barW) + 'px');
-	scrollDownButton.height('20px');
-	scrollDownButton.css('position', 'absolute');
-	scrollDownButton.css('background-color', 'black');
-	scrollDownButton.css('opacity', '0.8');
-	scrollDownButton.css('top', (this.container[0].offsetHeight - 20) + 'px');
-	scrollDownButton.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
-	this.scrollDownButton = scrollDownButton.appendTo(this.scrollBarWrap);
+	if (this.config.topArrow == 'true') {
+		var scrollUpButton = $('<div></div>');
+		scrollUpButton.width(parseInt(this.config.barW) + 'px');
+		scrollUpButton.height('20px');
+		scrollUpButton.css('position', 'absolute');
+		scrollUpButton.css('float', 'left');
+		scrollUpButton.css('background-color', 'black');
+		scrollUpButton.css('opacity', '0.8');
+		scrollUpButton.css('top', '0px');
+		scrollUpButton.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
+		this.scrollUpButton = scrollUpButton.appendTo(this.scrollBarWrap);
+	}
+	if (this.config.downArrow == 'true') {
+		var scrollDownButton = $('<div></div>');
+		scrollDownButton.width(parseInt(this.config.barW) + 'px');
+		scrollDownButton.height('20px');
+		scrollDownButton.css('position', 'absolute');
+		scrollDownButton.css('background-color', 'black');
+		scrollDownButton.css('opacity', '0.8');
+		scrollDownButton.css('top', (this.container[0].offsetHeight - 20) + 'px');
+		scrollDownButton.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
+		this.scrollDownButton = scrollDownButton.appendTo(this.scrollBarWrap);
+	}
 };
 
 /* Calculates the scroll bar height using the expression
