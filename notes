@@ -15,6 +15,8 @@
 //- get rid of getScrollUnit method. (removed after writing the adjustScrollbarPosition API which updates the scroll bar's top depending on the scrollTop and maxScrollTop)
 - getting offsetTop by climbing up the offsetParent chain.
 //- text selection while dragging shud scroll content
+- add class names to scroll bar, column, up and down buttons.
+- write how to use page in website.
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks (scroll bar with gradient, 3d look)
 - various demo samples (use cases like online frnds/contacts box, long product description, comments box, guest users chat box, display of thumbnails)
