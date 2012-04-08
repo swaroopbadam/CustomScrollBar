@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Demo of Custom Scroll Bar</title>
+<title>Demo : Custom Scroll Bar</title>
 <style type="text/css" src="main.css"></style>
 <script type="text/javascript" src="jquery-1.7.1.js"></script>
 <script type="text/javascript" src="custom_scrollbar.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false",barW:"10", topArrow:"false"});
+		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false",barW:"10"});
 		window.contactListScrollBar = new CustomScroll('contactList', {verticalColumn:"false",barW:"10"});
 		window.scrollBarObj = new CustomScroll('pageBody');
 		//window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
@@ -15,7 +15,11 @@
 </script>
 <style type="text/css">
 body {
-	background-color: #7D7D7D;
+	/* background-color: #7D7D7D; */
+	background: #8b8b8b; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a9a9a9', endColorstr='#7a7a7a'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#a9a9a9), to(#7a7a7a)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #a9a9a9,  #7a7a7a); /* for firefox 3.6+ */
 }
 div.imageFrame img {
 	margin-bottom: 5px;
@@ -67,7 +71,7 @@ div#contactList .contactItem{
 		</div>
 		<div style="padding-left:30px;text-decoration: underline;"><h3>Review comments sample with custom scroll bar</h3></div>
 		<div style="padding:0 30px 0 30px;">
-			<p>This sample has been configured with auto height scrollbar, width 10px (default being 15px), no vertical column behind scrollbar, no up arrow button.</p>
+			<p>This sample has been configured with auto height scrollbar, width 10px (default being 15px), no vertical column behind scrollbar.</p>
 		</div>
 		<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
 			<div class="reviewBlock">

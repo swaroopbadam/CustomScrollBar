@@ -1,7 +1,24 @@
 /*!
- * Javascript for CustomScrollBar.
- * https://github.com/swaroopkumar/CustomScrollBar
- * @author Swaroop Kumar Badam (created on 26-12-2011)
+ *	CustomScrollBar  (created on 26-12-2011)
+ *	http://customscrollbar.appspot.com
+ *	Javascript source for CustomScrollBar library.
+ *  Copyright (C) 2012  Swaroop Kumar Badam
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License,
+ *   any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *	
+ *	Download source at https://github.com/swaroopkumar/CustomScrollBar
+ *	email: swaroopkumar.badam@gmail.com
  */
 
 function CustomScroll(id, config) {
@@ -55,14 +72,6 @@ CustomScroll.prototype.init = function() {
 	this.mouseX = 0;
 	this.mouseY = 0;
 };
-
-//CustomScroll.prototype.updateMaxScrollTop = function() {
-//	var scrollTop = this.container[0].scrollTop;
-//	var contentHeight = window.getContentHeight(this.container[0]);
-//	this.container[0].scrollTop = contentHeight;
-//	this.maxScrollTop = this.container[0].scrollTop;
-//	this.container[0].scrollTop = scrollTop;
-//};
 
 CustomScroll.prototype.createScrollBar = function() {
 	this.makeChildrenAsSingleNode(this.container);

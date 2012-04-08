@@ -6,7 +6,7 @@
 //- prevent browser's default behaviour for keyboard up/down arrow keys and mouse wheel scroll. (using stopPropagation of event object)
 //- calculate height of scroll bar for auto config.
 //- nested containers with scrollbars. (required huge no. of changes - had to change the way scroll bar's markup was being generated which led to the changes in all apis)
-- top and down arrow buttons in vertical column.
+//- top and down arrow buttons in vertical column.
 /- adjust the maxScrollTop and scroll bar height when content element changes (introduced reInit api). - DOMNodeInserted,DOMNodeRemoved,DOMSubtreeModified events in non IE
 - using scroll bar column offsetHeight instead of container offsetHeight which lets user to have custom height for scroll bar column.
 - mouseover display block and mouseout display none feature. 
@@ -19,7 +19,7 @@
 - customize looks (scroll bar with gradient, 3d look)
 - various demo samples (use cases like online frnds/contacts box, long product description, comments box, guest users chat box, display of thumbnails)
 	- modify contact list sample
-	- make the demo site look more attractive -- scroll bar to the container with all samples
+	//- make the demo site look more attractive -- scroll bar to the container with all samples
 	- write more complex samples with scroll bars
 - horizontal scroll bar wid all features of vertical scroll bar
 - various inbuilt stylish bars
