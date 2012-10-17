@@ -9,13 +9,14 @@
 //- top and down arrow buttons in vertical column.
 /- adjust the maxScrollTop and scroll bar height when content element changes (introduced reInit api). - DOMNodeInserted,DOMNodeRemoved,DOMSubtreeModified events in non IE
 - using scroll bar column offsetHeight instead of container offsetHeight which lets user to have custom height for scroll bar column.
-- mouseover display block and mouseout display none feature. 
+//- mouseover display block and mouseout display none feature. (need to enhance more as the scroll bar disappears even while scrolling if the mouse goes out of the container)
 - showing hand cursor while dragging scroll bar.
 //- avoid updateMaxScrollTop as much as possible. (got rid of it after the scrollbar markup changes)
 //- get rid of getScrollUnit method. (removed after writing the adjustScrollbarPosition API which updates the scroll bar's top depending on the scrollTop and maxScrollTop)
 - getting offsetTop by climbing up the offsetParent chain.
+- handling the content with images as their height will be set only after the complete image gets loaded. user needs to re initialize the scroll bar api after image is loaded.
 //- text selection while dragging shud scroll content
-- add class names to scroll bar, column, up and down buttons.
+//- add class names to scroll bar, column, up and down buttons.
 - write how to use page in website.
 - holding mouse centre button down shud show up the scrolling arrows cursor
 - customize looks (scroll bar with gradient, 3d look)

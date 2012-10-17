@@ -44,9 +44,14 @@ CustomScroll.prototype.DEFAULT_CONFIG = {
 	colColor : 'black',
 	colOpacity : '0.2',
 	verticalColumn : 'true',
-	topArrow : 'true',
-	downArrow : 'true'
+	upArrow : 'true',
+	downArrow : 'true',
+	onMouseOver : 'false'
 };
+CustomScroll.prototype.SCROLL_BAR_CLASS_NAME = 'scrollBar';
+CustomScroll.prototype.SCROLL_COLUMN_CLASS_NAME = 'scrollColumn';
+CustomScroll.prototype.SCROLL_UP_CLASS_NAME = 'scrollUp';
+CustomScroll.prototype.SCROLL_DOWN_CLASS_NAME = 'scrollDown';
 CustomScroll.prototype.PAGE_DOWN_KEY_SCROLL = 430;
 CustomScroll.prototype.DOWN_KEY_SCROLL = 40;
 CustomScroll.prototype.MOUSE_WHEEL_SCROLL = 40;
@@ -79,10 +84,10 @@ CustomScroll.prototype.createScrollBar = function() {
 	this.scrollBarWrap.css('position', 'relative');
 	this.scrollBarWrap.css('top', (-this.contentEl[0].offsetHeight) + 'px');
 	var columnDiv = $('<div></div>');
+	columnDiv.addClass(this.SCROLL_COLUMN_CLASS_NAME);
 	columnDiv.width(parseInt(this.config.colW) + 'px');
 	columnDiv.height(this.container[0].offsetHeight);
 	columnDiv.css('position', 'absolute');
-	columnDiv.addClass('scrollBarColumn');
 	columnDiv.css('float', 'left');
 	columnDiv.css('top', '0px');
 	columnDiv.css('left', (this.container.width() - parseInt(this.config.colW)) + 'px');
@@ -99,17 +104,18 @@ CustomScroll.prototype.createScrollBar = function() {
 		scrollBarDiv.height(parseInt(this.config.barH) + 'px');
 	}
 	scrollBarDiv.css('position', 'absolute');
-	scrollBarDiv.addClass('scrollBar');
+	scrollBarDiv.addClass(this.SCROLL_BAR_CLASS_NAME);
 	scrollBarDiv.css('background-color', this.config.barColor);
 //	scrollBarDiv.css('border-radius', '8px');
 	scrollBarDiv.css('cursor', 'pointer');
 	scrollBarDiv.css('opacity', this.config.barOpacity);
-	var scrollBarTop = this.config.topArrow == 'true' ? '20px' : '0px';
+	var scrollBarTop = this.config.upArrow == 'true' ? '20px' : '0px';
 	scrollBarDiv.css('top', scrollBarTop);
 	scrollBarDiv.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
 	this.scrollBarEl = scrollBarDiv.appendTo(this.scrollBarWrap);
-	if (this.config.topArrow == 'true') {
+	if (this.config.upArrow == 'true') {
 		var scrollUpButton = $('<div></div>');
+		scrollUpButton.addClass(this.SCROLL_UP_CLASS_NAME);
 		scrollUpButton.width(parseInt(this.config.barW) + 'px');
 		scrollUpButton.height('20px');
 		scrollUpButton.css('position', 'absolute');
@@ -122,6 +128,7 @@ CustomScroll.prototype.createScrollBar = function() {
 	}
 	if (this.config.downArrow == 'true') {
 		var scrollDownButton = $('<div></div>');
+		scrollDownButton.addClass(this.SCROLL_DOWN_CLASS_NAME);
 		scrollDownButton.width(parseInt(this.config.barW) + 'px');
 		scrollDownButton.height('20px');
 		scrollDownButton.css('position', 'absolute');
@@ -131,16 +138,9 @@ CustomScroll.prototype.createScrollBar = function() {
 		scrollDownButton.css('left', (this.container.width() - parseInt(this.config.barW)) + 'px');
 		this.scrollDownButton = scrollDownButton.appendTo(this.scrollBarWrap);
 	}
-};
-
-/* Calculates the scroll bar height using the expression
- * x = % of container height in content height (containerHeight * 100 / contentHeight)
- * scrollbar height = x % of container height (x * containerHeight / 100)
- * @return {Number}
- */
-CustomScroll.prototype.getScrollBarHeight = function() {
-	var scrollBarHeight = Math.pow(this.container[0].offsetHeight, 2) / this.contentEl[0].offsetHeight;
-	return scrollBarHeight > 20 ? scrollBarHeight : 20;
+	if (this.config.onMouseOver == 'true') {
+		this.scrollBarWrap.css('display', 'none');
+	}
 };
 
 CustomScroll.prototype.initEventHandlers = function() {
@@ -154,13 +154,15 @@ CustomScroll.prototype.initEventHandlers = function() {
 		this.scrollBarColumn.on('mouseup', function(evt){obj.onColumnMouseUp(evt);});
 	}
 	this.container.on('mousedown', function(evt){obj.onContainerMouseDown(evt);});
-	if (this.config.topArrow == 'true' && this.scrollUpButton) {
+	if (this.config.upArrow == 'true' && this.scrollUpButton) {
 		this.scrollUpButton.on('mousedown', function(evt){obj.onUpButtonMouseDown(evt);});
 	}
 	if (this.config.downArrow == 'true' && this.scrollDownButton) {
 		this.scrollDownButton.on('mousedown', function(evt){obj.onDownButtonMouseDown(evt);});
 	}
-//	this.attachMouseOverHandlers();
+	if (this.config.onMouseOver == 'true') {
+		this.attachMouseOverHandlers();
+	}
 };
 
 CustomScroll.prototype.reInit = function() {
@@ -168,6 +170,16 @@ CustomScroll.prototype.reInit = function() {
 		this.scrollBarEl.height(this.getScrollBarHeight() + 'px');
 	}
 	this.adjustScrollBarPosition();
+};
+
+/* Calculates the scroll bar height using the expression
+ * x = % of container height in content height (containerHeight * 100 / contentHeight)
+ * scrollbar height = x % of container height (x * containerHeight / 100)
+ * @return {Number}
+ */
+CustomScroll.prototype.getScrollBarHeight = function() {
+	var scrollBarHeight = Math.pow(this.container[0].offsetHeight, 2) / this.contentEl[0].offsetHeight;
+	return scrollBarHeight > 20 ? scrollBarHeight : 20;
 };
 
 CustomScroll.prototype.onUpButtonMouseDown = function(evt) {
@@ -357,7 +369,7 @@ CustomScroll.prototype.scrollBy = function(amount) {
 CustomScroll.prototype.adjustScrollBarPosition = function() {
 	this.scrollBarWrap.css('top', (-this.contentEl[0].offsetHeight + this.container[0].scrollTop) + 'px');
 	var top = this.container[0].scrollTop * (this.getScrollBarMaxTop() - this.getScrollBarMinTop() - this.scrollBarEl[0].offsetHeight) / this.getMaxScrollTop();
-	top = this.config.topArrow == "true" ? (top + this.scrollUpButton[0].offsetHeight) : top;
+	top = this.config.upArrow == "true" ? (top + this.scrollUpButton[0].offsetHeight) : top;
 	this.scrollBarEl.css('top', top + 'px');
 };
 
@@ -392,7 +404,7 @@ CustomScroll.prototype.getMaxScrollTop = function() {
 };
 
 CustomScroll.prototype.getScrollBarMinTop = function() {
-	return this.config.topArrow == 'true' ? this.scrollUpButton[0].offsetHeight : 0;
+	return this.config.upArrow == 'true' ? this.scrollUpButton[0].offsetHeight : 0;
 };
 
 CustomScroll.prototype.getScrollBarMaxTop = function() {

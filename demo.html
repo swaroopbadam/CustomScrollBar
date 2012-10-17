@@ -7,15 +7,14 @@
 <script type="text/javascript" src="custom_scrollbar.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.scrollBarObj2 = new CustomScroll('container2', {verticalColumn:"false",barW:"10"});
+		window.reviewsContainerScrollbar = new CustomScroll('reviewsContainer', {verticalColumn:"false",barW:"20",upArrow:"false",downArrow:"false"});
 		window.contactListScrollBar = new CustomScroll('contactList', {verticalColumn:"false",barW:"10"});
-		window.scrollBarObj = new CustomScroll('pageBody');
+		window.pageBodyScrollBar = new CustomScroll('pageBody');
 		//window.scrollBarObj = new CustomScroll('container1', {barH:"100"});
 	});
 </script>
 <style type="text/css">
 body {
-	/* background-color: #7D7D7D; */
 	background: #8b8b8b; /* for non-css3 browsers */
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a9a9a9', endColorstr='#7a7a7a'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#a9a9a9), to(#7a7a7a)); /* for webkit browsers */
@@ -24,11 +23,9 @@ body {
 div.imageFrame img {
 	margin-bottom: 5px;
 }
-
 div.imageFrame {
 	text-align: center;
 }
-
 div.pageBody {
 	font-family: arial;
 	overflow: auto;
@@ -36,7 +33,6 @@ div.pageBody {
 	width: 1000px;
 	background-color: #FFF;
 }
-
 div.pageHeader {
 	overflow: auto;
 	margin: auto;
@@ -44,7 +40,7 @@ div.pageHeader {
 	color: white;
 	width: 1000px;
 }
-div#container2 .reviewBlock{
+div#reviewsContainer .reviewBlock{
 	font-size: 14px;
 	padding: 10px 0;
 }
@@ -73,7 +69,7 @@ div#contactList .contactItem{
 		<div style="padding:0 30px 0 30px;">
 			<p>This sample has been configured with auto height scrollbar, width 10px (default being 15px), no vertical column behind scrollbar.</p>
 		</div>
-		<div id="container2" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
+		<div id="reviewsContainer" style="height: 500px;overflow: auto;width: 800px;padding-left: 30px;">
 			<div class="reviewBlock">
 				<div class="" style="width: 20%;float: left; text-align: left;">
 					<div class="">
@@ -86,7 +82,7 @@ div#contactList .contactItem{
 					</div>
 					<div class="">19 March 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -123,7 +119,7 @@ div#contactList .contactItem{
 					</div>
 					<div class="">13 March 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -161,7 +157,7 @@ but then when i looked in the local market i found the same!!!!!</p>
 					</div>
 					<div class="">10 March 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -196,7 +192,7 @@ But at the end nice book to brush up concepts and practice..</p>
 					</div>
 					<div class="">04 March 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -235,7 +231,7 @@ PROS:
 					</div>
 					<div class="">11 Feb 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -274,7 +270,7 @@ Happy Learning</p>
 					</div>
 					<div class="">01 Feb 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -305,7 +301,7 @@ Happy Learning</p>
 					</div>
 					<div class="">05 Jan 12</div>
 					<div class="">
-						<img src="./certified_buyer-42557.png" />
+						<img src="./images/certified_buyer-42557.png" />
 					</div>
 				</div>
 				<div class="" style="width: auto;float: none; overflow: auto;">
@@ -327,27 +323,27 @@ Happy Learning</p>
 		</div>
 		<!-- <div id="container1" style="height: 500px;overflow: auto;width: 700px;">
 			<div class="imageFrame">
-				<img src="./Lake_And_Boats.jpg" alt="Lake_And_Boats"
+				<img src="./images/Lake_And_Boats.jpg" alt="Lake_And_Boats"
 					title="Lake_And_Boats" />
 			</div>
 			<div class="imageFrame">
-				<img src="./Green_Heaven.jpg" alt="Green_Heaven"
+				<img src="./images/Green_Heaven.jpg" alt="Green_Heaven"
 					title="Green_Heaven" />
 			</div>
 			<div class="imageFrame">
-				<img src="./Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2"
+				<img src="./images/Lake_And_Boats_2.jpg" alt="Lake_And_Boats_2"
 					title="Lake_And_Boats_2" />
 			</div>
 			<div class="imageFrame">
-				<img src="./Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi"
+				<img src="./images/Lotus_Temple_Delhi.jpg" alt="Lotus_Temple_Delhi"
 					title="Lotus_Temple_Delhi" />
 			</div>
 			<div class="imageFrame">
-				<img src="./Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra"
+				<img src="./images/Taj_Mahal_Agra.jpg" alt="Taj_Mahal_Agra"
 					title="Taj_Mahal_Agra" />
 			</div>
 			<div class="imageFrame">
-				<img src="./India_Gate_Delhi.jpg" alt="India_Gate_Delhi"
+				<img src="./images/India_Gate_Delhi.jpg" alt="India_Gate_Delhi"
 					title="India_Gate_Delhi" />
 			</div>
 		</div> -->
